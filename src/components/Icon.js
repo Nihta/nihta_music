@@ -42,7 +42,7 @@ function getIconType(type) {
  * @typedef Props
  * @prop { 'material' | 'material-community' | 'simple-line-icon' | 'zocial'
  * | 'font-awesome' | 'octicon' | 'ionicon' | 'foundation' | 'evilicon'
- * | 'entypo' | 'antdesign' | 'font-awesome-5'} type
+ * | 'entypo' | 'antdesign' | 'font-awesome-5' | 'feather' } type
  * @param {Props} props
  */
 function Icon(props) {
