@@ -14,57 +14,61 @@ const BottomTabs = createBottomTabNavigator();
 
 const tabBarOptions = {
   showLabel: false,
+  // activeTintColor: foreground,
+  // inactiveTintColor: `${contrastTrans}0.7)`,
+  // activeBackgroundColor: elevatedBG,
+  // inactiveBackgroundColor: elevatedBG,
   style: {
     borderTopWidth: 0,
   },
   allowFontScaling: false,
 };
 
+const iconProvider = route => {
+  return ({focused, color}) => {
+    switch (route) {
+      case 'Tracks':
+        return (
+          <Icon
+            name="musical-notes-outline"
+            type="ionicon"
+            size={focused ? 26 : 23}
+            color={color}
+          />
+        );
+      case 'Search':
+        return (
+          <Icon
+            name="search-outline"
+            type="ionicon"
+            size={focused ? 26 : 23}
+            color={color}
+          />
+        );
+
+      case 'Library':
+        return (
+          <Icon
+            name="library-outline"
+            type="ionicon"
+            size={focused ? 26 : 23}
+            color={color}
+          />
+        );
+      case 'Settings':
+        return (
+          <Icon
+            name="settings-outline"
+            type="ionicon"
+            size={focused ? 26 : 23}
+            color={color}
+          />
+        );
+    }
+  };
+};
+
 function AppNavigation(props) {
-  function iconProvider(route) {
-    return ({focused, color}) => {
-      switch (route) {
-        case 'Tracks':
-          return (
-            <Icon
-              name="musical-notes-outline"
-              type="ionicon"
-              size={focused ? 26 : 23}
-              color={color}
-            />
-          );
-        case 'Search':
-          return (
-            <Icon
-              name="search-outline"
-              type="ionicon"
-              size={focused ? 26 : 23}
-              color={color}
-            />
-          );
-
-        case 'Library':
-          return (
-            <Icon
-              name="library-outline"
-              type="ionicon"
-              size={focused ? 26 : 23}
-              color={color}
-            />
-          );
-        case 'Settings':
-          return (
-            <Icon
-              name="settings-outline"
-              type="ionicon"
-              size={focused ? 26 : 23}
-              color={color}
-            />
-          );
-      }
-    };
-  }
-
   return (
     <BottomTabs.Navigator
       initialRouteName="Tracks"
