@@ -1,36 +1,47 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, TouchableNativeFeedback} from 'react-native';
 import styled, {withTheme} from 'styled-components/native';
 
-import {contrastColor, contrastTransColor} from '../themes/styles';
+// Components
 import Icon from './Icon';
+
+// Theme
+import {contrastColor, contrastTransColor} from '../themes/styles';
 
 const ScreenWidth = Dimensions.get('window').width;
 
-function ListItem(props) {
+function ListItem({
+  title,
+  subtitle,
+  titleStyle,
+  rightElement,
+  onPress,
+  onLongPress,
+  delayLongPress,
+  iconProps,
+}) {
   return (
-    <Wrapper
-      onPress={props.onPress}
-      onLongPress={props.onLongPress}
-      delayLongPress={props.delayLongPress}
-      activeOpacity={0.6}>
-      <StyledIcon {...props.iconProps} />
-      <TextWrapper>
-        <Title style={props.titleStyle} numberOfLines={1}>
-          {props.title}
-        </Title>
-        {props.subtitle && (
-          <SubTitle style={props.subtitleStyle}>{props.subtitle}</SubTitle>
-        )}
-      </TextWrapper>
-      <RightWrapper>{props.rightElement && props.rightElement}</RightWrapper>
-    </Wrapper>
+    <TouchableNativeFeedback
+      onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={delayLongPress}>
+      <Wrapper>
+        <StyledIcon {...iconProps} />
+        <TextWrapper>
+          <Title style={titleStyle} numberOfLines={1}>
+            {title}
+          </Title>
+          {subtitle && <SubTitle style={subtitle}>{subtitle}</SubTitle>}
+        </TextWrapper>
+        <RightWrapper>{rightElement && rightElement}</RightWrapper>
+      </Wrapper>
+    </TouchableNativeFeedback>
   );
 }
 
 export default withTheme(ListItem);
 
-const Wrapper = styled.TouchableOpacity`
+const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
   height: 60px;
