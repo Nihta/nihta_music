@@ -8,9 +8,9 @@ import Icon from '../components/Icon';
 import LibraryNavigator from './LibraryNavigator';
 
 // Screens
-import TracksScreen from '../screens/TracksScreen';
+import TracksScreen from '../screens/TrackScreen';
 import SearchScreen from '../screens/SearchScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/SettingScreen';
 
 const BottomTabs = createBottomTabNavigator();
 

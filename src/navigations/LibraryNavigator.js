@@ -6,8 +6,8 @@ import Icon from '../components/Icon';
 
 // Screens
 import AlbumsScreen from '../screens/AlbumsScreen';
-import ArtistsScreen from '../screens/ArtistsScreen';
-import FoldersScreen from '../screens/FoldersScreen';
+import ArtistsScreen from '../screens/ArtistScreen';
+import FoldersScreen from '../screens/FolderScreen';
 import LibraryScreen from '../screens/LibraryScreen';
 import PlaylistsScreen from '../screens/PlaylistsScreen';
 
