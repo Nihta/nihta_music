@@ -35,7 +35,7 @@ function LibraryNavigator() {
       <Stack.Screen
         name="library"
         component={LibraryScreen}
-        options={{title: 'Thư Viện Của Tôi'}}
+        options={{title: 'Thư viện phát'}}
       />
       <Stack.Screen
         name="playlists"
