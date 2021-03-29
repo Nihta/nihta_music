@@ -5,16 +5,20 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Icon from '../components/Icon';
 
 // Screens
-import AlbumsScreen from '../screens/AlbumsScreen';
-import ArtistsScreen from '../screens/ArtistScreen';
-import FoldersScreen from '../screens/FolderScreen';
+import AlbumScreen from '../screens/AlbumsScreen';
+import ArtistScreen from '../screens/ArtistScreen';
+import FolderScreen from '../screens/FolderScreen';
 import LibraryScreen from '../screens/LibraryScreen';
-import PlaylistsScreen from '../screens/PlaylistsScreen';
+import PlaylistScreen from '../screens/PlaylistScreen';
 
+/**
+ * @type {import('@react-navigation/stack').StackNavigationOptions}
+ */
 const screenOptions = {
   ...TransitionPresets.ScaleFromCenterAndroid,
   headerStyle: {
     elevation: 0,
+    backgroundColor: 'white',
   },
   headerTitleStyle: {
     fontFamily: 'Circular',
@@ -24,7 +28,9 @@ const screenOptions = {
     marginRight: 30,
   },
   headerTitleAlign: 'center',
-  headerBackImage: () => <Icon type="feather" name="chevron-left" size={26} />,
+  headerBackImage: () => (
+    <Icon type="ionicon" name="chevron-back-outline" size={26} />
+  ),
 };
 
 const Stack = createStackNavigator();
@@ -37,24 +43,27 @@ function LibraryNavigator() {
         component={LibraryScreen}
         options={{title: 'Thư viện phát'}}
       />
+
       <Stack.Screen
-        name="playlists"
-        component={PlaylistsScreen}
+        name="playlist"
+        component={PlaylistScreen}
         options={{title: 'Danh sách phát'}}
       />
+
       <Stack.Screen
-        name="artists"
-        component={ArtistsScreen}
+        name={'artist'}
+        component={ArtistScreen}
         options={{title: 'Nghệ Sĩ'}}
       />
+
       <Stack.Screen
-        name="albums"
-        component={AlbumsScreen}
+        name="album"
+        component={AlbumScreen}
         options={{title: 'Albums'}}
       />
       <Stack.Screen
-        name="folders"
-        component={FoldersScreen}
+        name="folder"
+        component={FolderScreen}
         options={{title: 'Thư mục'}}
       />
     </Stack.Navigator>
