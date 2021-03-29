@@ -1,21 +1,50 @@
 import React from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar} from 'react-native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {ThemeProvider} from 'styled-components/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import RootStack from './RootStack';
+// Redux
+import {themeSelector} from '../selectors/setting.selectors';
 
+// Theme
+import * as themes from '../themes';
+
+// Navigation
+import RootStack from './RootStack';
 import {navigationRef} from './utils/NavigationService';
 
 function RootNavigation(props) {
-  const isDarkMode = useColorScheme() === 'dark';
+  // const isDarkMode = useColorScheme() === 'dark';
+
+  // Lấy theme hiện tại
+  const theme = useSelector(themeSelector);
+
+  const barStyle = `${theme === 'light' ? 'dark-content' : 'light-content'}`;
+
+  // https://reactnavigation.org/docs/themes/
+  const baseTheme = theme === 'light' ? DefaultTheme : DarkTheme;
+  const myTheme = {
+    ...baseTheme,
+    colors: {
+      ...baseTheme.colors,
+    },
+    dark: true,
+  };
 
   return (
     <>
       <SafeAreaProvider>
-        <NavigationContainer ref={navigationRef}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <RootStack />
+        <NavigationContainer ref={navigationRef} theme={myTheme}>
+          <ThemeProvider theme={themes[theme]}>
+            <StatusBar barStyle={barStyle} />
+            <RootStack />
+          </ThemeProvider>
         </NavigationContainer>
       </SafeAreaProvider>
     </>

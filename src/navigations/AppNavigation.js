@@ -1,23 +1,21 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+// Components
+import Icon from '../components/Icon';
+
+// Navigation
+import LibraryNavigator from './LibraryNavigator';
+
 // Screens
 import TracksScreen from '../screens/TracksScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import LibraryScreen from '../screens/LibraryScreen';
-
-// Components
-import Icon from '../components/Icon';
 
 const BottomTabs = createBottomTabNavigator();
 
 const tabBarOptions = {
   showLabel: false,
-  // activeTintColor: foreground,
-  // inactiveTintColor: `${contrastTrans}0.7)`,
-  // activeBackgroundColor: elevatedBG,
-  // inactiveBackgroundColor: elevatedBG,
   style: {
     borderTopWidth: 0,
   },
@@ -81,16 +79,19 @@ function AppNavigation(props) {
           tabBarIcon: iconProvider('Tracks'),
         }}
       />
+
       <BottomTabs.Screen
         name="Search"
         component={SearchScreen}
         options={{tabBarIcon: iconProvider('Search')}}
       />
+
       <BottomTabs.Screen
         name="Library"
-        component={LibraryScreen}
+        component={LibraryNavigator}
         options={{tabBarIcon: iconProvider('Library')}}
       />
+
       <BottomTabs.Screen
         name="Settings"
         component={SettingsScreen}
