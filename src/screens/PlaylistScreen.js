@@ -1,14 +1,14 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-function PlaylistsScreen(props) {
+function PlaylistScreen(props) {
   return (
     <>
       <View>
-        <Text>PlaylistsScreen</Text>
+        <Text>PlaylistScreen</Text>
       </View>
     </>
   );
 }
 
-export default PlaylistsScreen;
+export default PlaylistScreen;
