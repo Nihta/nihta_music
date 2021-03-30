@@ -1,7 +1,8 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, TouchableNativeFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
+// Components
 import Icon from './Icon';
 
 const placeholder = require('../../assets/images/placeholder.jpg');
@@ -14,28 +15,29 @@ function Track(props) {
   const coverSrc = placeholder;
 
   return (
-    <Touchable activeOpacity={0.4}>
-      <Thumbnail source={coverSrc} />
-      <TextWrapper>
-        <Title numberOfLines={1}>{item.title}</Title>
-        <Artist numberOfLines={1}>{item.artist}</Artist>
-      </TextWrapper>
-      <StyledIcon name="more-vertical" type="feather" size={25} />
-    </Touchable>
+    <TouchableNativeFeedback>
+      <Wrapper>
+        <Thumbnail source={coverSrc} />
+        <TextWrapper>
+          <Title numberOfLines={1}>{item.title}</Title>
+          <Artist numberOfLines={1}>{item.artist}</Artist>
+        </TextWrapper>
+        <StyledIcon name="ellipsis-vertical" type="ionicon" size={25} />
+      </Wrapper>
+    </TouchableNativeFeedback>
   );
 }
 
-const Touchable = styled.TouchableOpacity`
+const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
   height: 65px;
-  margin-top: 10px;
   padding-left: 15px;
 `;
 
 const Thumbnail = styled.Image`
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   border-radius: 8px;
 `;
 
@@ -48,7 +50,7 @@ const TextWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-  font-size: 15px;
+  font-size: 16px;
   width: ${SCREEN_WIDTH / 2}px;
 `;
 
