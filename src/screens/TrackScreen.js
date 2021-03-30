@@ -1,6 +1,8 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList} from 'react-native';
 import styled from 'styled-components/native';
+
+// Components
 import Track from '../components/Track';
 
 function TracksScreen(props) {
