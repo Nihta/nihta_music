@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, TouchableNativeFeedback} from 'react-native';
-import styled, {withTheme} from 'styled-components/native';
+import styled from 'styled-components/native';
 
 // Components
 import Icon from './Icon';
@@ -39,7 +39,7 @@ function ListItem({
   );
 }
 
-export default withTheme(ListItem);
+export default ListItem;
 
 const Wrapper = styled.View`
   flex-direction: row;
