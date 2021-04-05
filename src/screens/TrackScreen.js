@@ -26,6 +26,9 @@ function TracksScreen(props) {
 
           const data = await getMedia();
           setTrackData(data);
+        } else {
+          const data = await getMedia();
+          setTrackData(data);
         }
       })();
     } catch (error) {
