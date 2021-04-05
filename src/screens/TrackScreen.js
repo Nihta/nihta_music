@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
+import {setupPlayer} from 'react-native-track-player';
 import styled from 'styled-components/native';
 
 // Components
@@ -19,11 +20,8 @@ function TracksScreen(props) {
     try {
       (async () => {
         let granted = await checkStoragePermission();
-
-        console.log(granted);
         if (!granted) {
           await getStoragePermission();
-
           const data = await getMedia();
           setTrackData(data);
         } else {
@@ -34,6 +32,14 @@ function TracksScreen(props) {
     } catch (error) {
       console.log(error);
     }
+  }, []);
+
+  useEffect(() => {
+    setupPlayer()
+      .then(() => {
+        console.log('Setup player done!');
+      })
+      .catch(reason => console.log(reason));
   }, []);
 
   // const trackData = [
