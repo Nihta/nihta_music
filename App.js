@@ -1,11 +1,9 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 
+import store from './src/store';
+
 import RootNavigation from './src/navigations';
-
-import configureStore from './src/store/configureStore';
-
-const store = configureStore();
 
 function App() {
   return (
