@@ -20,7 +20,7 @@ function Track(props) {
         <Thumbnail source={coverSrc} />
         <TextWrapper>
           <Title numberOfLines={1}>{item.title}</Title>
-          <Artist numberOfLines={1}>{item.artist}</Artist>
+          <Artist numberOfLines={1}>{item.author}</Artist>
         </TextWrapper>
         <StyledIcon name="ellipsis-vertical" type="ionicon" size={25} />
       </Wrapper>
