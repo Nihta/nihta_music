@@ -1,120 +1,130 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import styled from 'styled-components/native';
 
 // Components
 import Track from '../components/Track';
+import getMedia from '../utils/getMedia';
 
 function TracksScreen(props) {
-  const trackData = [
-    {
-      id: '000',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '001',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '002',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '003',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '004',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '005',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '006',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '007',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '008',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '009',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
+  const [trackData, setTrackData] = useState([]);
 
-    {
-      id: '010',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '011',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '012',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
+  useEffect(() => {
+    (async () => {
+      const data = await getMedia();
+      setTrackData(data);
+    })();
+  }, []);
 
-    {
-      id: '013',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '014',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '015',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '016',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '017',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '018',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '019',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-    {
-      id: '020',
-      title: 'Tên bài hát',
-      artist: 'Ca sĩ',
-    },
-  ];
+  // const trackData = [
+  //   {
+  //     id: '000',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '001',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '002',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '003',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '004',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '005',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '006',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '007',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '008',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '009',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+
+  //   {
+  //     id: '010',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '011',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '012',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+
+  //   {
+  //     id: '013',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '014',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '015',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '016',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '017',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '018',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '019',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  //   {
+  //     id: '020',
+  //     title: 'Tên bài hát',
+  //     artist: 'Ca sĩ',
+  //   },
+  // ];
 
   if (trackData === 0) {
     return (
