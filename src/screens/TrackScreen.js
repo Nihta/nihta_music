@@ -4,16 +4,33 @@ import styled from 'styled-components/native';
 
 // Components
 import Track from '../components/Track';
+
+// Utils
 import getMedia from '../utils/getMedia';
+import {
+  checkStoragePermission,
+  getStoragePermission,
+} from '../utils/permission';
 
 function TracksScreen(props) {
   const [trackData, setTrackData] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const data = await getMedia();
-      setTrackData(data);
-    })();
+    try {
+      (async () => {
+        let granted = await checkStoragePermission();
+
+        console.log(granted);
+        if (!granted) {
+          await getStoragePermission();
+
+          const data = await getMedia();
+          setTrackData(data);
+        }
+      })();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   // const trackData = [
