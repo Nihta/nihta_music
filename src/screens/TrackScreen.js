@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import {setupPlayer} from 'react-native-track-player';
 import styled from 'styled-components/native';
+import Toast from '../components/Toast';
 
 // Components
 import Track from '../components/Track';
@@ -23,9 +24,11 @@ function TracksScreen(props) {
         if (!granted) {
           await getStoragePermission();
           const data = await getMedia();
+          Toast('Quét nhạc xong');
           setTrackData(data);
         } else {
           const data = await getMedia();
+          Toast('Quét nhạc xong');
           setTrackData(data);
         }
       })();
