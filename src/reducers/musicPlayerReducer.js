@@ -1,6 +1,6 @@
 import TrackPlayer from 'react-native-track-player';
 
-// * Action types
+// * Action types --------------------------------------------------------------
 export const CURRENT_TRACK = 'musicPlayer/CURRENT_TRACK';
 export const PLAYBACK = 'musicPlayer/PLAYBACK';
 export const LOOP_MODE = 'musicPlayer/LOOP_MODE';
@@ -43,6 +43,13 @@ export const setShuffle = isShuffle => {
 };
 
 // * Selector ------------------------------------------------------------------
+
+/**
+ * Lấy track hiện tại (đang phát hoặc tạm dừng)
+ * @param {*} state
+ * @returns
+ */
+export const currentTrackSelector = state => state.musicPlayer.currentTrack;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {
