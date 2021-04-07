@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
-import {setCurrentTrack} from '../actions/musicPlayer.actions';
+import {setCurrentTrack} from '../reducers/musicPlayerReducer';
 
 // Components
 import Toast from '../components/Toast';

@@ -1,8 +1,7 @@
 import TrackPlayer from 'react-native-track-player';
+import {PLAYBACK} from '../reducers/musicPlayerReducer';
 
 import store from '../store';
-
-import {PLAYBACK} from '../actions/musicPlayer.actions';
 
 // * https://react-native-track-player.js.org/getting-started/#playback-service
 // * https://react-native-track-player.js.org/documentation/#events

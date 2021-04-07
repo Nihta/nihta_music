@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 // Reducer
 import mediaReducer from './mediaReducer';
 import settingReducer from './settingReducer';
-import musicPlayerReducer from './musicPlayer.reducer';
+import musicPlayerReducer from './musicPlayerReducer';
 
 const rootReducer = combineReducers({
   media: mediaReducer,
