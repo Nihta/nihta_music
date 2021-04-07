@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
 import AppNavigation from './AppNavigation';
+import PlayerScreen from '../screens/PlayerScreen';
 
 const screenOptions = {
   ...TransitionPresets.ModalPresentationIOS,
@@ -20,6 +21,7 @@ function RootStack() {
       headerMode="none"
       screenOptions={screenOptions}>
       <Stack.Screen name="app" component={AppNavigation} options={noHeader} />
+      <Stack.Screen name="player" component={PlayerScreen} />
     </Stack.Navigator>
   );
 }
