@@ -10,12 +10,13 @@ const placeholder = require('../../assets/images/placeholder.jpg');
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 function Track(props) {
-  const {item} = props;
+  const {item, onPress} = props;
 
-  const coverSrc = placeholder;
+  // TODO: artwork not working
+  const coverSrc = item.artwork ? {uri: item.artwork} : placeholder;
 
   return (
-    <TouchableNativeFeedback>
+    <TouchableNativeFeedback onPress={onPress}>
       <Wrapper>
         <Thumbnail source={coverSrc} />
         <TextWrapper>
