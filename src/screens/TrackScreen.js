@@ -1,55 +1,57 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {FlatList} from 'react-native';
-import TrackPlayer, {setupPlayer} from 'react-native-track-player';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
+
+import {setCurrentTrack} from '../actions/musicPlayer.actions';
 
 // Components
 import Toast from '../components/Toast';
 import Track from '../components/Track';
+import {getMedia, mediaFilesSelector} from '../reducers/mediaReducer';
+import setupPlayer from '../services/setupPlayer';
 
 // Utils
-import getMedia from '../utils/getMedia';
 import {
   checkStoragePermission,
   getStoragePermission,
 } from '../utils/permission';
 
 function TracksScreen(props) {
-  const [trackData, setTrackData] = useState([]);
+  const dispatch = useDispatch();
+  // const [trackData, setTrackData] = useState([]);
+  const trackData = useSelector(mediaFilesSelector);
+
+  console.log(trackData);
 
   useEffect(() => {
     try {
       (async () => {
-        let granted = await checkStoragePermission();
+        const granted = await checkStoragePermission();
         if (!granted) {
           await getStoragePermission();
-          const data = await getMedia();
-          Toast('Quét nhạc xong');
-          setTrackData(data);
-        } else {
-          const data = await getMedia();
-          Toast('Quét nhạc xong');
-          setTrackData(data);
         }
+        dispatch(getMedia());
+        Toast('Quyét nhạc xong!');
       })();
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setupPlayer()
       .then(() => {
-        console.log('Setup player done!');
+        console.log('The player is ready to be used!');
       })
       .catch(reason => console.log(reason));
   }, []);
 
-  if (trackData.length === 0) {
+  if (!trackData || trackData.length === 0) {
     return (
       <MessageWrapper>
         <Message numberOfLines={2}>
-          {'Không tìm thấy bất kì bản nhạc nào trên thiết bị của bạn'}
+          Không tìm thấy bất kì bản nhạc nào trên thiết bị của bạn
         </Message>
       </MessageWrapper>
     );
@@ -60,7 +62,9 @@ function TracksScreen(props) {
       <FlatList
         keyExtractor={asset => asset.id.toString()}
         data={trackData}
-        renderItem={({item}) => <Track item={item} />}
+        renderItem={({item}) => (
+          <Track item={item} onPress={() => dispatch(setCurrentTrack(item))} />
+        )}
       />
     </>
   );
