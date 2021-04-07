@@ -1,14 +1,19 @@
 import TrackPlayer from 'react-native-track-player';
 
+import store from '../store';
+
+import {PLAYBACK} from '../actions/musicPlayer.actions';
+
 // * https://react-native-track-player.js.org/getting-started/#playback-service
 // * https://react-native-track-player.js.org/documentation/#events
-module.exports = async function () {
+export default async function () {
   /**
    * Fired when the user presses the play button.
    * Only fired if the CAPABILITY_PLAY is allowed.
    */
   TrackPlayer.addEventListener('remote-play', () => {
     TrackPlayer.play();
+    store.dispatch({type: PLAYBACK, payload: true});
   });
 
   /**
@@ -18,6 +23,12 @@ module.exports = async function () {
    */
   TrackPlayer.addEventListener('remote-pause', () => {
     TrackPlayer.pause();
+    store.dispatch({type: PLAYBACK, payload: false});
+  });
+
+  TrackPlayer.addEventListener('remote-stop', () => {
+    TrackPlayer.destroy();
+    console.log('destroy');
   });
 
   /**
@@ -39,4 +50,4 @@ module.exports = async function () {
     'playback-queue-ended',
     ({position, track}) => {},
   );
-};
+}
