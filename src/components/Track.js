@@ -1,5 +1,10 @@
 import React from 'react';
-import {Dimensions, TouchableNativeFeedback} from 'react-native';
+import {
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableNativeFeedback,
+} from 'react-native';
 import styled from 'styled-components/native';
 
 // Components
@@ -12,16 +17,15 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 function Track(props) {
   const {item, onPress} = props;
 
-  // TODO: artwork not working
   const coverSrc = item.artwork ? {uri: item.artwork} : placeholder;
 
   return (
     <TouchableNativeFeedback onPress={onPress}>
       <Wrapper>
-        <Thumbnail source={coverSrc} />
+        <Image source={coverSrc} style={styles.thumbnail} />
         <TextWrapper>
           <Title numberOfLines={1}>{item.title}</Title>
-          <Artist numberOfLines={1}>{item.author}</Artist>
+          <Artist numberOfLines={1}>{item.artist}</Artist>
         </TextWrapper>
         <StyledIcon name="ellipsis-vertical" type="ionicon" size={25} />
       </Wrapper>
@@ -36,12 +40,6 @@ const Wrapper = styled.View`
   padding-left: 15px;
 `;
 
-const Thumbnail = styled.Image`
-  height: 48px;
-  width: 48px;
-  border-radius: 8px;
-`;
-
 const TextWrapper = styled.View`
   flex-direction: column;
   flex: 1;
@@ -52,16 +50,25 @@ const TextWrapper = styled.View`
 
 const Title = styled.Text`
   font-size: 16px;
-  width: ${SCREEN_WIDTH / 2}px;
+  width: ${SCREEN_WIDTH / 1.5}px;
 `;
 
 const Artist = styled.Text`
   font-size: 14px;
-  width: ${SCREEN_WIDTH / 2}px;
+  width: ${SCREEN_WIDTH / 1.5}px;
 `;
 
 const StyledIcon = styled(Icon)`
   padding: 10px;
 `;
+
+const styles = StyleSheet.create({
+  thumbnail: {
+    height: 48,
+    width: 48,
+    borderRadius: 8,
+    resizeMode: 'cover',
+  },
+});
 
 export default Track;
