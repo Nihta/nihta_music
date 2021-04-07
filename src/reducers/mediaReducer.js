@@ -25,8 +25,6 @@ const options = {
 export const getMedia = () => async dispatch => {
   try {
     const data = await MusicFiles.getAll(options);
-    console.log('Cover: ', data[0].cover);
-    console.log(data);
 
     dispatch({
       type: SET_MEDIA_FILES,

@@ -22,8 +22,6 @@ function TracksScreen(props) {
   // const [trackData, setTrackData] = useState([]);
   const trackData = useSelector(mediaFilesSelector);
 
-  console.log(trackData);
-
   useEffect(() => {
     try {
       (async () => {
