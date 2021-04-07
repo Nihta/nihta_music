@@ -10,7 +10,7 @@ import {ThemeProvider} from 'styled-components/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 // Redux
-import {themeSelector} from '../selectors/setting.selectors';
+import {themeSelector} from '../reducers/settingReducer';
 
 // Theme
 import * as themes from '../themes';

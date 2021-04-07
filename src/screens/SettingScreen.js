@@ -7,8 +7,7 @@ import {useTheme} from 'styled-components/native';
 import ListItem from '../components/ListItem';
 
 // Redux
-import {setTheme} from '../actions/setting.actions';
-import {themeSelector} from '../selectors/setting.selectors';
+import {setTheme, themeSelector} from '../reducers/settingReducer';
 
 const icons = {
   darkMode: {

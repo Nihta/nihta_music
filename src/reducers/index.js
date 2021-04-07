@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux';
 
 // Reducer
-import settingReducer from './setting.reducer';
 import mediaReducer from './mediaReducer';
+import settingReducer from './settingReducer';
 import musicPlayerReducer from './musicPlayer.reducer';
 
 const rootReducer = combineReducers({
-  setting: settingReducer,
   media: mediaReducer,
+  setting: settingReducer,
   musicPlayer: musicPlayerReducer,
 });
 
