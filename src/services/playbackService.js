@@ -5,6 +5,10 @@ import store from '../store';
 
 // * https://react-native-track-player.js.org/getting-started/#playback-service
 // * https://react-native-track-player.js.org/documentation/#events
+
+/**
+ * ! Cần phải đóng ứng dụng rồi mở lại để nhũng thay đổi code được áp dụng
+ */
 export default async function () {
   /**
    * Fired when the user presses the play button.
@@ -34,7 +38,9 @@ export default async function () {
    * Fired when the user presses the next track button.
    * Only fired if the CAPABILITY_SKIP_TO_NEXT is allowed.
    */
-  TrackPlayer.addEventListener('remote-next', () => {});
+  TrackPlayer.addEventListener('remote-next', () => {
+    console.log('remote-next');
+  });
 
   /**
    * Fired when the user presses the previous track button.
