@@ -19,7 +19,7 @@ import PlaybackControl from '../components/PlaybackControl';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82;
 
-function PlayerScreen(props) {
+function PlayerScreen() {
   const currentTrack = useSelector(selectCurrentTrack);
 
   return (
@@ -63,7 +63,6 @@ const Header = styled.View`
 `;
 
 const HeaderText = styled.Text`
-  font-family: 'Circular';
   font-size: 15px;
   color: ${contrastTransColor(0.75)};
 `;
@@ -80,7 +79,6 @@ const TextWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-  font-family: 'CircularBold';
   font-size: 18px;
   color: ${contrastColor};
   width: ${PlayerWidth}px;
@@ -88,28 +86,9 @@ const Title = styled.Text`
 `;
 
 const Artist = styled.Text`
-  font-family: 'CircularLight';
   font-size: 15px;
   margin-top: 4px;
   color: ${contrastTransColor(0.75)};
   width: ${PlayerWidth}px;
   text-align: center;
 `;
-
-// const StyledIcon = styled(Icon)`
-//   color: ${contrastTransColor(0.75)};
-//   padding: 5px;
-// `;
-
-const icons = {
-  collapse: {
-    name: 'chevron-down',
-    type: 'feather',
-    size: 26,
-  },
-  options: {
-    name: 'more-horizontal',
-    type: 'feather',
-    size: 26,
-  },
-};

@@ -38,7 +38,7 @@ const onPressReport = () => {
   );
 };
 
-function SettingsScreen(props) {
+function SettingsScreen() {
   const theme = useTheme();
   const dispatch = useDispatch();
 

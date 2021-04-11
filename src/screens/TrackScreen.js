@@ -17,12 +17,9 @@ import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 import setupPlayer from '../services/setupPlayer';
 
 // Utils
-import {
-  checkStoragePermission,
-  getStoragePermission,
-} from '../utils/permission';
+import {checkStoragePermission, getStoragePermission} from '../utils';
 
-function TracksScreen(props) {
+function TracksScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const trackData = useSelector(selectMediaFiles);
