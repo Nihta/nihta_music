@@ -2,8 +2,13 @@ import React, {useEffect} from 'react';
 import {FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
+import {useNavigation} from '@react-navigation/native';
 
-import {setCurrentTrack} from '../reducers/musicPlayerReducer';
+// Redux
+import {
+  currentTrackSelector,
+  setCurrentTrack,
+} from '../reducers/musicPlayerReducer';
 
 // Components
 import Toast from '../components/Toast';
@@ -19,8 +24,9 @@ import {
 
 function TracksScreen(props) {
   const dispatch = useDispatch();
-  // const [trackData, setTrackData] = useState([]);
+  const navigation = useNavigation();
   const trackData = useSelector(mediaFilesSelector);
+  const currentTrack = useSelector(currentTrackSelector);
 
   useEffect(() => {
     try {
@@ -61,7 +67,16 @@ function TracksScreen(props) {
         keyExtractor={asset => asset.id.toString()}
         data={trackData}
         renderItem={({item}) => (
-          <Track item={item} onPress={() => dispatch(setCurrentTrack(item))} />
+          <Track
+            item={item}
+            onPress={async () => {
+              if (!currentTrack || item.id !== currentTrack.id) {
+                await dispatch(setCurrentTrack(item));
+              }
+
+              navigation.navigate('player');
+            }}
+          />
         )}
       />
     </>
