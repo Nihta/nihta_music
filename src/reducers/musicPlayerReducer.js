@@ -8,6 +8,26 @@ export const SHUFFLE_MODE = 'musicPlayer/SHUFFLE_MODE';
 
 // * Actions -------------------------------------------------------------------
 
+/**
+ * Đặt trạng thái cho player
+ * @param {boolean} isPlaying true để phát, false để tạm dừng
+ */
+export const setIsPlaying = isPlaying => async dispatch => {
+  if (isPlaying) {
+    await TrackPlayer.play();
+    dispatch({
+      type: PLAYBACK,
+      payload: true,
+    });
+  } else {
+    await TrackPlayer.pause();
+    dispatch({
+      type: PLAYBACK,
+      payload: false,
+    });
+  }
+};
+
 export const setCurrentTrack = currentTrack => async dispatch => {
   try {
     await TrackPlayer.reset();
@@ -43,13 +63,22 @@ export const setShuffle = isShuffle => {
 };
 
 // * Selector ------------------------------------------------------------------
+/**
+ *
+ * @param {*} state
+ * @returns {boolean}
+ */
+export const selectIsPlaying = state => state.musicPlayer.isPlaying;
 
 /**
  * Lấy track hiện tại (đang phát hoặc tạm dừng)
  * @param {*} state
- * @returns
  */
 export const currentTrackSelector = state => state.musicPlayer.currentTrack;
+
+export const selectLoop = state => state.musicPlayer.loop;
+
+export const selectShuffle = state => state.musicPlayer.shuffle;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {
