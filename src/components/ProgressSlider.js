@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, View} from 'react-native';
 import styled from 'styled-components/native';
 import TrackPlayer, {ProgressComponent} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
-import {currentTrackSelector} from '../reducers/musicPlayerReducer';
+import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
 import {connect} from 'react-redux';
 
 const ScreenWidth = Dimensions.get('window').width;
@@ -76,7 +76,7 @@ const TimeStyled = styled.Text`
 `;
 
 const mapStateToProps = state => ({
-  currentTrack: currentTrackSelector(state),
+  currentTrack: selectCurrentTrack(state),
 });
 
 export default connect(mapStateToProps, null)(ProgressSlider);

@@ -36,7 +36,7 @@ export const getMedia = () => async dispatch => {
 };
 
 // * Selector ------------------------------------------------------------------
-export const mediaFilesSelector = state => state.media.mediaFiles;
+export const selectMediaFiles = state => state.media.mediaFiles;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {

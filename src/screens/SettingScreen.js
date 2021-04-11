@@ -7,7 +7,7 @@ import {useTheme} from 'styled-components/native';
 import ListItem from '../components/ListItem';
 
 // Redux
-import {setTheme, themeSelector} from '../reducers/settingReducer';
+import {setTheme, selectTheme} from '../reducers/settingReducer';
 
 const icons = {
   darkMode: {
@@ -42,7 +42,7 @@ function SettingsScreen(props) {
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  const themeMode = useSelector(themeSelector);
+  const themeMode = useSelector(selectTheme);
 
   return (
     <ScrollView style={styles.scroll}>

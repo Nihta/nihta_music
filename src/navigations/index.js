@@ -10,7 +10,7 @@ import {ThemeProvider} from 'styled-components/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 // Redux
-import {themeSelector} from '../reducers/settingReducer';
+import {selectTheme} from '../reducers/settingReducer';
 
 // Theme
 import * as themes from '../themes';
@@ -23,7 +23,7 @@ function RootNavigation(props) {
   // const isDarkMode = useColorScheme() === 'dark';
 
   // Lấy theme hiện tại
-  const theme = useSelector(themeSelector);
+  const theme = useSelector(selectTheme);
 
   const barStyle = `${theme === 'light' ? 'dark-content' : 'light-content'}`;
 

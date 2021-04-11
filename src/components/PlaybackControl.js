@@ -16,10 +16,10 @@ import {
   setIsPlaying,
   selectShuffle,
   selectIsPlaying,
-  currentTrackSelector,
+  selectCurrentTrack,
   setCurrentTrack,
 } from '../reducers/musicPlayerReducer';
-import {mediaFilesSelector} from '../reducers/mediaReducer';
+import {selectMediaFiles} from '../reducers/mediaReducer';
 
 // Utils
 import {randomNumberInRange} from '../utils';
@@ -74,10 +74,10 @@ function PlaybackControl(props) {
   const dispatch = useDispatch();
 
   const loop = useSelector(selectLoop);
-  const media = useSelector(mediaFilesSelector);
+  const media = useSelector(selectMediaFiles);
   const shuffle = useSelector(selectShuffle);
   const isPlaying = useSelector(selectIsPlaying);
-  const currentTrack = useSelector(currentTrackSelector);
+  const currentTrack = useSelector(selectCurrentTrack);
 
   const skipBackward = () => {
     const idxCurrentTrack = parseInt(currentTrack.id, 10);

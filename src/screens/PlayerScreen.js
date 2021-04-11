@@ -11,7 +11,7 @@ import {
 } from '../themes/styles';
 
 // Redux
-import {currentTrackSelector} from '../reducers/musicPlayerReducer';
+import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
 import {useSelector} from 'react-redux';
 import ProgressSlider from '../components/ProgressSlider';
 import Cover from '../components/Cover';
@@ -20,7 +20,7 @@ import PlaybackControl from '../components/PlaybackControl';
 const PlayerWidth = Dimensions.get('window').width * 0.82;
 
 function PlayerScreen(props) {
-  const currentTrack = useSelector(currentTrackSelector);
+  const currentTrack = useSelector(selectCurrentTrack);
 
   return (
     <Background source={{uri: currentTrack?.artwork}} blurRadius={40}>

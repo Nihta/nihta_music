@@ -38,7 +38,7 @@ export const setCurrentTrack = currentTrack => async dispatch => {
       payload: currentTrack,
     });
 
-    TrackPlayer.play();
+    await TrackPlayer.play();
     dispatch({
       type: PLAYBACK,
       payload: true,
@@ -74,7 +74,7 @@ export const selectIsPlaying = state => state.musicPlayer.isPlaying;
  * Lấy track hiện tại (đang phát hoặc tạm dừng)
  * @param {*} state
  */
-export const currentTrackSelector = state => state.musicPlayer.currentTrack;
+export const selectCurrentTrack = state => state.musicPlayer.currentTrack;
 
 export const selectLoop = state => state.musicPlayer.loop;
 

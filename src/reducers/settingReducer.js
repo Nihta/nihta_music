@@ -21,7 +21,7 @@ export const setTheme = theme => {
  * @param {*} state
  * @returns {string}
  */
-export const themeSelector = state => state.setting.theme;
+export const selectTheme = state => state.setting.theme;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {

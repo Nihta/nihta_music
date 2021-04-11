@@ -6,14 +6,14 @@ import {useNavigation} from '@react-navigation/native';
 
 // Redux
 import {
-  currentTrackSelector,
+  selectCurrentTrack,
   setCurrentTrack,
 } from '../reducers/musicPlayerReducer';
 
 // Components
 import Toast from '../components/Toast';
 import Track from '../components/Track';
-import {getMedia, mediaFilesSelector} from '../reducers/mediaReducer';
+import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 import setupPlayer from '../services/setupPlayer';
 
 // Utils
@@ -25,8 +25,8 @@ import {
 function TracksScreen(props) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const trackData = useSelector(mediaFilesSelector);
-  const currentTrack = useSelector(currentTrackSelector);
+  const trackData = useSelector(selectMediaFiles);
+  const currentTrack = useSelector(selectCurrentTrack);
 
   useEffect(() => {
     try {
