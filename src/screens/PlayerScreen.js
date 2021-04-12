@@ -23,7 +23,7 @@ function PlayerScreen() {
   const currentTrack = useSelector(selectCurrentTrack);
 
   return (
-    <Background source={{uri: currentTrack?.artwork}} blurRadius={40}>
+    <Background source={{uri: currentTrack?.artwork}} blurRadius={60}>
       <Gradient colors={['rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .8)']}>
         <Header>
           <HeaderText>Đang phát</HeaderText>
