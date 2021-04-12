@@ -1,7 +1,19 @@
 import TrackPlayer from 'react-native-track-player';
-import {PLAYBACK} from '../reducers/musicPlayerReducer';
 
+// Redux
 import store from '../store';
+import {selectMediaFiles} from '../reducers/mediaReducer';
+import {
+  selectCurrentTrack,
+  selectLoop,
+  selectShuffle,
+  setIsPlaying,
+} from '../reducers/musicPlayerReducer';
+
+// Utils
+import {randomIntegerInRange} from '../utils';
+
+import backgroundPlayback from './backgroundPlayback';
 
 // * https://react-native-track-player.js.org/getting-started/#playback-service
 // * https://react-native-track-player.js.org/documentation/#events
@@ -16,7 +28,7 @@ export default async function () {
    */
   TrackPlayer.addEventListener('remote-play', () => {
     TrackPlayer.play();
-    store.dispatch({type: PLAYBACK, payload: true});
+    store.dispatch(setIsPlaying(true));
   });
 
   /**
@@ -26,12 +38,11 @@ export default async function () {
    */
   TrackPlayer.addEventListener('remote-pause', () => {
     TrackPlayer.pause();
-    store.dispatch({type: PLAYBACK, payload: false});
+    store.dispatch(setIsPlaying(false));
   });
 
   TrackPlayer.addEventListener('remote-stop', () => {
     TrackPlayer.destroy();
-    console.log('destroy');
   });
 
   /**
@@ -46,13 +57,40 @@ export default async function () {
    * Fired when the user presses the previous track button.
    * Only fired if the CAPABILITY_SKIP_TO_PREVIOUS is allowed.
    */
-  TrackPlayer.addEventListener('remote-previous', () => {});
+  TrackPlayer.addEventListener('remote-previous', () => {
+    console.log('remote-previous');
+  });
 
   /**
    * Fired when the queue reaches the end.
    */
   TrackPlayer.addEventListener(
     'playback-queue-ended',
-    ({position, track}) => {},
+    ({position, previousTrackId}) => {
+      // console.log(track);
+
+      const state = store.getState();
+
+      const loop = selectLoop(state);
+      const mediaFiles = selectMediaFiles(state);
+      const shuffle = selectShuffle(state);
+      const currentTrack = selectCurrentTrack(state);
+
+      if (position > 0) {
+        if (loop) {
+          backgroundPlayback(currentTrack);
+        } else {
+          const idxCurrentTrack = parseInt(currentTrack.id, 10);
+
+          const idxNextTrack = shuffle
+            ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
+            : idxCurrentTrack === mediaFiles.length - 1
+            ? 0
+            : idxCurrentTrack + 1;
+
+          backgroundPlayback(mediaFiles[idxNextTrack]);
+        }
+      }
+    },
   );
 }
