@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
 
 // Redux
@@ -24,18 +23,16 @@ import {selectMediaFiles} from '../reducers/mediaReducer';
 // Utils
 import {randomIntegerInRange} from '../utils';
 
-// Theme
-import {contrastColor, contrastTransColor} from '../themes/styles';
-
 // Components
 import Icon from '../components/Icon';
+import PressableIcon from './PressableIcon';
 
 const WrapperWidth = Dimensions.get('window').width * 0.82;
 
 const icons = {
   play: {
-    name: 'play',
-    type: 'ionicon',
+    name: 'play-arrow',
+    type: 'material',
     size: 32,
   },
   pause: {
@@ -118,39 +115,48 @@ function PlaybackControl() {
   return (
     <>
       <View style={styles.mainWrapper}>
-        <TouchableWithoutFeedback onPress={onShufflePress}>
-          <IconWrapper>
-            {shuffle ? (
-              <TransIcon {...icons.shuffle} />
-            ) : (
-              <DisabledIcon {...icons.shuffle} />
-            )}
-          </IconWrapper>
-        </TouchableWithoutFeedback>
-        <StyledIcon {...icons.skipBackward} onPress={skipBackward} />
+        <PressableIcon
+          onPress={onShufflePress}
+          iconProps={icons.shuffle}
+          iconStyle={{
+            color: shuffle ? 'rgba(255,255,255,0.16)' : '#fff',
+          }}
+        />
+
+        <PressableIcon
+          onPress={skipBackward}
+          iconProps={icons.skipBackward}
+          iconStyle={styles.icon}
+        />
+
         <TouchableWithoutFeedback onPress={onPlayPress}>
-          <PlayWrapper>
+          <View style={styles.btnPlayWrapper}>
             {isPlaying ? (
-              <StyledIcon {...icons.pause} />
+              <Icon style={styles.icon} {...icons.pause} />
             ) : (
-              <StyledIcon {...icons.play} />
+              <Icon style={styles.icon} {...icons.play} />
             )}
-          </PlayWrapper>
+          </View>
         </TouchableWithoutFeedback>
-        <StyledIcon {...icons.skipForward} onPress={skipForward} />
-        <TouchableWithoutFeedback onPress={onLoopPress}>
-          <IconWrapper>
-            {loop ? (
-              <TransIcon {...icons.loopOne} />
-            ) : (
-              <TransIcon {...icons.loop} />
-            )}
-          </IconWrapper>
-        </TouchableWithoutFeedback>
+
+        <PressableIcon
+          onPress={skipForward}
+          iconProps={icons.skipForward}
+          iconStyle={styles.icon}
+        />
+
+        <PressableIcon
+          onPress={onLoopPress}
+          iconProps={loop ? icons.loopOne : icons.loop}
+          iconStyle={{
+            color: '#ccc',
+          }}
+        />
       </View>
     </>
   );
 }
+
 const styles = StyleSheet.create({
   mainWrapper: {
     flexDirection: 'row',
@@ -158,37 +164,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: WrapperWidth + 10,
   },
+  btnPlayWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderRadius: 30,
+    borderColor: '#fff',
+    width: 60,
+    height: 60,
+  },
+  iconWrapper: {
+    height: 28,
+    width: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    color: '#fff',
+  },
 });
-
-const PlayWrapper = styled.View`
-  justify-content: center;
-  align-items: center;
-  border-width: 3px;
-  border-radius: 30px;
-  width: 60px;
-  height: 60px;
-  border-color: ${contrastColor};
-`;
-
-const StyledIcon = styled(Icon)`
-  color: ${contrastColor};
-  padding: 5px;
-`;
-
-const TransIcon = styled(Icon)`
-  color: ${contrastTransColor(0.9)};
-`;
-
-const DisabledIcon = styled(Icon)`
-  color: ${contrastTransColor(0.35)};
-`;
-
-const IconWrapper = styled.View`
-  height: 28px;
-  width: 28px;
-  border-radius: 14px;
-  justify-content: center;
-  align-items: center;
-`;
 
 export default PlaybackControl;
