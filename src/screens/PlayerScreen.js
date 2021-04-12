@@ -24,7 +24,7 @@ function PlayerScreen() {
 
   return (
     <Background source={{uri: currentTrack?.artwork}} blurRadius={40}>
-      <Gradient colors={['#4c669f', '#3b5998', '#192f6a']}>
+      <Gradient colors={['rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .8)']}>
         <Header>
           <HeaderText>Đang phát</HeaderText>
         </Header>
@@ -41,6 +41,7 @@ function PlayerScreen() {
     </Background>
   );
 }
+
 export default PlayerScreen;
 
 const Gradient = styled(LinearGradient)`
