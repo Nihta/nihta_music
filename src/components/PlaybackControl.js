@@ -70,7 +70,7 @@ const icons = {
   },
 };
 
-function PlaybackControl(props) {
+function PlaybackControl() {
   const dispatch = useDispatch();
 
   const loop = useSelector(selectLoop);
@@ -83,7 +83,7 @@ function PlaybackControl(props) {
     const idxCurrentTrack = parseInt(currentTrack.id, 10);
 
     const idxNextTrack = shuffle
-      ? randomIntegerInRange(0, media.length)
+      ? randomIntegerInRange(0, media.length, idxCurrentTrack)
       : idxCurrentTrack === 0
       ? media.length - 1
       : idxCurrentTrack - 1;
@@ -95,7 +95,7 @@ function PlaybackControl(props) {
     const idxCurrentTrack = parseInt(currentTrack.id, 10);
 
     const idxNextTrack = shuffle
-      ? randomIntegerInRange(0, media.length)
+      ? randomIntegerInRange(0, media.length, idxCurrentTrack)
       : idxCurrentTrack === media.length - 1
       ? 0
       : idxCurrentTrack + 1;
