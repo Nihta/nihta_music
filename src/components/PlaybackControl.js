@@ -22,7 +22,7 @@ import {
 import {selectMediaFiles} from '../reducers/mediaReducer';
 
 // Utils
-import {randomNumberInRange} from '../utils';
+import {randomIntegerInRange} from '../utils';
 
 // Theme
 import {contrastColor, contrastTransColor} from '../themes/styles';
@@ -83,7 +83,7 @@ function PlaybackControl(props) {
     const idxCurrentTrack = parseInt(currentTrack.id, 10);
 
     const idxNextTrack = shuffle
-      ? randomNumberInRange(0, media.length)
+      ? randomIntegerInRange(0, media.length)
       : idxCurrentTrack === 0
       ? media.length - 1
       : idxCurrentTrack - 1;
@@ -95,7 +95,7 @@ function PlaybackControl(props) {
     const idxCurrentTrack = parseInt(currentTrack.id, 10);
 
     const idxNextTrack = shuffle
-      ? randomNumberInRange(0, media.length)
+      ? randomIntegerInRange(0, media.length)
       : idxCurrentTrack === media.length - 1
       ? 0
       : idxCurrentTrack + 1;

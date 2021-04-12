@@ -7,7 +7,6 @@ export * from './permission';
  * @param {number} max
  * @returns {number}
  */
-export const randomNumberInRange = (min, max) => {
-  const rn = Math.random() * (max - min) + min;
-  return Math.trunc(rn);
+export const randomIntegerInRange = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
