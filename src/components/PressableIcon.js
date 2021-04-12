@@ -3,7 +3,12 @@ import {TouchableNativeFeedback, View, StyleSheet} from 'react-native';
 
 import Icon from './Icon';
 
-function PressableIcon({size = 50, iconProps: {type, name, size: iconSize}}) {
+function PressableIcon({
+  size = 50,
+  onPress,
+  iconProps: {type, name, size: iconSize},
+  iconStyle,
+}) {
   return (
     <View
       style={[
@@ -14,9 +19,9 @@ function PressableIcon({size = 50, iconProps: {type, name, size: iconSize}}) {
           borderRadius: size / 2,
         },
       ]}>
-      <TouchableNativeFeedback>
+      <TouchableNativeFeedback onPress={onPress}>
         <View style={styles.wrapperIcon}>
-          <Icon type={type} name={name} size={iconSize} />
+          <Icon type={type} name={name} size={iconSize} style={iconStyle} />
         </View>
       </TouchableNativeFeedback>
     </View>
