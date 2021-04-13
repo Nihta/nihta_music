@@ -6,7 +6,6 @@ import {
   musicPlayerJump,
   selectCurrentTrack,
   selectLoop,
-  selectShuffle,
   setCurrentTrack,
   setIsPlaying,
 } from '../reducers/musicPlayerReducer';
@@ -46,7 +45,7 @@ export default async function () {
    * Only fired if the CAPABILITY_SKIP_TO_NEXT is allowed.
    */
   TrackPlayer.addEventListener('remote-next', () => {
-    console.log('remote-next');
+    store.dispatch(musicPlayerJump('next'));
   });
 
   /**
@@ -54,7 +53,7 @@ export default async function () {
    * Only fired if the CAPABILITY_SKIP_TO_PREVIOUS is allowed.
    */
   TrackPlayer.addEventListener('remote-previous', () => {
-    console.log('remote-previous');
+    store.dispatch(musicPlayerJump('previous'));
   });
 
   /**
