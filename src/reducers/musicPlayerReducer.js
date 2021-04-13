@@ -1,4 +1,9 @@
+import {createSelector} from 'reselect';
 import TrackPlayer from 'react-native-track-player';
+
+import {selectMediaFiles} from './mediaReducer';
+
+import {randomIntegerInRange} from '../utils';
 
 // * Action types --------------------------------------------------------------
 export const CURRENT_TRACK = 'musicPlayer/CURRENT_TRACK';
@@ -60,6 +65,39 @@ export const setShuffle = isShuffle => {
     type: SHUFFLE_MODE,
     payload: isShuffle,
   };
+};
+
+/**
+ * Chuyển bài
+ * @param {'forward' | 'backward'} type
+ * @returns {{payload, type: string}}
+ */
+export const musicPlayerJump = type => async (dispatch, getState) => {
+  const state = getState();
+
+  const currentTrack = selectCurrentTrack(state);
+  const shuffle = selectShuffle(state);
+  const mediaFiles = selectMediaFiles(state);
+
+  const idxCurrentTrack = parseInt(currentTrack.id, 10);
+
+  if (type === 'forward') {
+    const idxNextTrack = shuffle
+      ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
+      : idxCurrentTrack === mediaFiles.length - 1
+      ? 0
+      : idxCurrentTrack + 1;
+
+    dispatch(setCurrentTrack(mediaFiles[idxNextTrack]));
+  } else if (type === 'backward') {
+    const idxNextTrack = shuffle
+      ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
+      : idxCurrentTrack === 0
+      ? mediaFiles.length - 1
+      : idxCurrentTrack - 1;
+
+    dispatch(setCurrentTrack(mediaFiles[idxNextTrack]));
+  }
 };
 
 // * Selector ------------------------------------------------------------------
