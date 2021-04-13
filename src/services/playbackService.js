@@ -2,18 +2,14 @@ import TrackPlayer from 'react-native-track-player';
 
 // Redux
 import store from '../store';
-import {selectMediaFiles} from '../reducers/mediaReducer';
 import {
+  musicPlayerJump,
   selectCurrentTrack,
   selectLoop,
   selectShuffle,
+  setCurrentTrack,
   setIsPlaying,
 } from '../reducers/musicPlayerReducer';
-
-// Utils
-import {randomIntegerInRange} from '../utils';
-
-import backgroundPlayback from './backgroundPlayback';
 
 // * https://react-native-track-player.js.org/getting-started/#playback-service
 // * https://react-native-track-player.js.org/documentation/#events
@@ -67,28 +63,15 @@ export default async function () {
   TrackPlayer.addEventListener(
     'playback-queue-ended',
     ({position, previousTrackId}) => {
-      // console.log(track);
-
       const state = store.getState();
-
       const loop = selectLoop(state);
-      const mediaFiles = selectMediaFiles(state);
-      const shuffle = selectShuffle(state);
       const currentTrack = selectCurrentTrack(state);
 
       if (position > 0) {
         if (loop) {
-          backgroundPlayback(currentTrack);
+          store.dispatch(setCurrentTrack(currentTrack));
         } else {
-          const idxCurrentTrack = parseInt(currentTrack.id, 10);
-
-          const idxNextTrack = shuffle
-            ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
-            : idxCurrentTrack === mediaFiles.length - 1
-            ? 0
-            : idxCurrentTrack + 1;
-
-          backgroundPlayback(mediaFiles[idxNextTrack]);
+          store.dispatch(musicPlayerJump('next'));
         }
       }
     },
