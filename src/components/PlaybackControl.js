@@ -39,12 +39,12 @@ const icons = {
     type: 'material',
     size: 32,
   },
-  skipForward: {
+  skipNext: {
     name: 'skip-next',
     type: 'material',
     size: 40,
   },
-  skipBackward: {
+  skipPrevious: {
     name: 'skip-previous',
     type: 'material',
     size: 40,
@@ -73,12 +73,12 @@ function PlaybackControl() {
   const shuffle = useSelector(selectShuffle);
   const isPlaying = useSelector(selectIsPlaying);
 
-  const skipBackward = () => {
-    dispatch(musicPlayerJump('backward'));
+  const skipNext = () => {
+    dispatch(musicPlayerJump('next'));
   };
 
-  const skipForward = () => {
-    dispatch(musicPlayerJump('forward'));
+  const skipPrevious = () => {
+    dispatch(musicPlayerJump('previous'));
   };
 
   const onLoopPress = () => {
@@ -105,8 +105,8 @@ function PlaybackControl() {
         />
 
         <PressableIcon
-          onPress={skipBackward}
-          iconProps={icons.skipBackward}
+          onPress={skipPrevious}
+          iconProps={icons.skipPrevious}
           iconStyle={styles.icon}
         />
 
@@ -121,8 +121,8 @@ function PlaybackControl() {
         </TouchableWithoutFeedback>
 
         <PressableIcon
-          onPress={skipForward}
-          iconProps={icons.skipForward}
+          onPress={skipNext}
+          iconProps={icons.skipNext}
           iconStyle={styles.icon}
         />
 

@@ -69,7 +69,7 @@ export const setShuffle = isShuffle => {
 
 /**
  * Chuyển bài
- * @param {'forward' | 'backward'} type
+ * @param {'previous' | 'next'} type
  * @returns {{payload, type: string}}
  */
 export const musicPlayerJump = type => async (dispatch, getState) => {
@@ -81,7 +81,7 @@ export const musicPlayerJump = type => async (dispatch, getState) => {
 
   const idxCurrentTrack = parseInt(currentTrack.id, 10);
 
-  if (type === 'forward') {
+  if (type === 'previous') {
     const idxNextTrack = shuffle
       ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
       : idxCurrentTrack === mediaFiles.length - 1
@@ -89,7 +89,7 @@ export const musicPlayerJump = type => async (dispatch, getState) => {
       : idxCurrentTrack + 1;
 
     dispatch(setCurrentTrack(mediaFiles[idxNextTrack]));
-  } else if (type === 'backward') {
+  } else if (type === 'next') {
     const idxNextTrack = shuffle
       ? randomIntegerInRange(0, mediaFiles.length, idxCurrentTrack)
       : idxCurrentTrack === 0
