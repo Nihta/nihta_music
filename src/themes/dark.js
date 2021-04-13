@@ -8,4 +8,11 @@ export const dark = {
   fgTrans: 'rgba(30, 215, 96, ',
   bgTrans: 'rgba(18, 18, 18, ',
   current: 'dark',
+
+  primary: '#00adb5',
+  secondary: '#eeeeee',
+  // text
+  textColor: '#fff',
+  textSecondaryColor: '#777',
+  textLight: '#fff',
 };

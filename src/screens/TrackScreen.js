@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StatusBar} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 // Redux
 import {
@@ -59,7 +60,7 @@ function TracksScreen() {
   }
 
   return (
-    <>
+    <SafeAreaView>
       <FlatList
         keyExtractor={asset => asset.id.toString()}
         data={trackData}
@@ -76,7 +77,7 @@ function TracksScreen() {
           />
         )}
       />
-    </>
+    </SafeAreaView>
   );
 }
 

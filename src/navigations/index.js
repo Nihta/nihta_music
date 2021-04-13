@@ -42,7 +42,11 @@ function RootNavigation(props) {
       <SafeAreaProvider>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
           <ThemeProvider theme={themes[theme]}>
-            <StatusBar barStyle={barStyle} />
+            <StatusBar
+              barStyle={barStyle}
+              translucent={true}
+              backgroundColor={'transparent'}
+            />
             <RootStack />
           </ThemeProvider>
         </NavigationContainer>

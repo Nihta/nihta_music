@@ -81,7 +81,7 @@ const TextWrapper = styled.View`
 
 const Title = styled.Text`
   font-size: 18px;
-  color: ${contrastColor};
+  color: ${props => props.theme.textLight};
   width: ${PlayerWidth}px;
   text-align: center;
 `;
@@ -89,7 +89,7 @@ const Title = styled.Text`
 const Artist = styled.Text`
   font-size: 15px;
   margin-top: 4px;
-  color: ${contrastTransColor(0.75)};
+  color: ${props => props.theme.textLight};
   width: ${PlayerWidth}px;
   text-align: center;
 `;

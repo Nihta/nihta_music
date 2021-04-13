@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import styled from 'styled-components/native';
+import styled, {withTheme} from 'styled-components/native';
 import TrackPlayer, {ProgressComponent} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
@@ -34,14 +34,15 @@ class ProgressSlider extends ProgressComponent {
   };
 
   render() {
-    const {currentTrack} = this.props;
+    const {currentTrack, theme} = this.props;
     return (
       <View style={styles.wrapper}>
         <Slider
           value={this.getProgress()}
           style={styles.sliderStyle}
-          minimumTrackTintColor="purple"
-          maximumTrackTintColor="#ccc"
+          minimumTrackTintColor={theme.primary}
+          maximumTrackTintColor={theme.secondary}
+          thumbTintColor={theme.primary}
           onValueChange={this.seekTo}
         />
         <View style={styles.timeWrapper}>
@@ -79,4 +80,4 @@ const mapStateToProps = state => ({
   currentTrack: selectCurrentTrack(state),
 });
 
-export default connect(mapStateToProps, null)(ProgressSlider);
+export default connect(mapStateToProps, null)(withTheme(ProgressSlider));

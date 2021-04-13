@@ -51,11 +51,13 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
   font-size: 16px;
   width: ${SCREEN_WIDTH / 1.5}px;
+  color: ${props => props.theme.textColor};
 `;
 
 const Artist = styled.Text`
   font-size: 14px;
   width: ${SCREEN_WIDTH / 1.5}px;
+  color: ${props => props.theme.textSecondaryColor};
 `;
 
 const StyledIcon = styled(Icon)`
