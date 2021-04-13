@@ -16,12 +16,11 @@ import {
   selectShuffle,
   selectIsPlaying,
   selectCurrentTrack,
-  setCurrentTrack,
+  musicPlayerJump,
 } from '../reducers/musicPlayerReducer';
 import {selectMediaFiles} from '../reducers/mediaReducer';
 
 // Utils
-import {randomIntegerInRange} from '../utils';
 
 // Components
 import Icon from '../components/Icon';
@@ -71,33 +70,15 @@ function PlaybackControl() {
   const dispatch = useDispatch();
 
   const loop = useSelector(selectLoop);
-  const media = useSelector(selectMediaFiles);
   const shuffle = useSelector(selectShuffle);
   const isPlaying = useSelector(selectIsPlaying);
-  const currentTrack = useSelector(selectCurrentTrack);
 
   const skipBackward = () => {
-    const idxCurrentTrack = parseInt(currentTrack.id, 10);
-
-    const idxNextTrack = shuffle
-      ? randomIntegerInRange(0, media.length, idxCurrentTrack)
-      : idxCurrentTrack === 0
-      ? media.length - 1
-      : idxCurrentTrack - 1;
-
-    dispatch(setCurrentTrack(media[idxNextTrack]));
+    dispatch(musicPlayerJump('backward'));
   };
 
   const skipForward = () => {
-    const idxCurrentTrack = parseInt(currentTrack.id, 10);
-
-    const idxNextTrack = shuffle
-      ? randomIntegerInRange(0, media.length, idxCurrentTrack)
-      : idxCurrentTrack === media.length - 1
-      ? 0
-      : idxCurrentTrack + 1;
-
-    dispatch(setCurrentTrack(media[idxNextTrack]));
+    dispatch(musicPlayerJump('forward'));
   };
 
   const onLoopPress = () => {
