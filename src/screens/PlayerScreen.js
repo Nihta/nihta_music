@@ -15,7 +15,7 @@ import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
 import {useSelector} from 'react-redux';
 import ProgressSlider from '../components/ProgressSlider';
 import Cover from '../components/Cover';
-import PlaybackControl from '../components/PlaybackControl';
+import PlaybackControl from '../containers/PlaybackControl';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82;
 
