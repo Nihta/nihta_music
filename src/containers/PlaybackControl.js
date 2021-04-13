@@ -15,16 +15,14 @@ import {
   setIsPlaying,
   selectShuffle,
   selectIsPlaying,
-  selectCurrentTrack,
   musicPlayerJump,
 } from '../reducers/musicPlayerReducer';
-import {selectMediaFiles} from '../reducers/mediaReducer';
 
 // Utils
 
 // Components
 import Icon from '../components/Icon';
-import PressableIcon from './PressableIcon';
+import PressableIcon from '../components/PressableIcon';
 
 const WrapperWidth = Dimensions.get('window').width * 0.82;
 
