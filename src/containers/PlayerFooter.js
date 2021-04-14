@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Dimensions,
   Image,
   StyleSheet,
   Text,
@@ -8,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import styled, {useTheme} from 'styled-components/native';
+import {useTheme} from 'styled-components/native';
 import {useTrackPlayerProgress} from 'react-native-track-player/lib/hooks';
 
 // Navigations
@@ -22,12 +21,10 @@ import {
 } from '../reducers/musicPlayerReducer';
 
 // Components
-import Icon from '../components/Icon';
 import ProgressBar from '../components/ProgressBar';
 import PressableIcon from '../components/PressableIcon';
 
 const placeholder = require('../../assets/images/placeholder.jpg');
-const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const icons = {
   playIcon: {
@@ -71,16 +68,20 @@ function PlayerFooter() {
               <Image style={styles.thumbnail} source={coverSrc} />
 
               <View style={styles.textWrapper}>
-                <Text style={styles.title} numberOfLines={1}>
+                <Text
+                  style={[styles.title, {color: theme.textColor}]}
+                  numberOfLines={1}>
                   {currentTrack.title || 'unknown'}
                 </Text>
-                <Text style={styles.artist} numberOfLines={1}>
+                <Text
+                  style={[styles.artist, {color: theme.textSecondaryColor}]}
+                  numberOfLines={1}>
                   {currentTrack.artist || 'unknown'}
                 </Text>
               </View>
 
               <PressableIcon
-                iconStyle={styles.icon}
+                iconStyle={[styles.icon, {color: theme.textColor}]}
                 iconProps={isPlaying ? icons.pauseIcon : icons.playIcon}
                 onPress={togglePlayback}
               />
@@ -114,9 +115,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: 'white',
   },
-  icon: {
-    color: 'white',
-  },
+  icon: {},
   thumbnail: {
     height: 42,
     width: 42,
@@ -135,17 +134,15 @@ const styles = StyleSheet.create({
   },
   progress: {
     height: 2,
-    width: SCREEN_WIDTH,
+    width: '100%',
     backgroundColor: '#ccc',
   },
   title: {
     fontSize: 14,
-    color: 'black',
-    width: SCREEN_WIDTH / 2,
+    width: '100%',
   },
   artist: {
     fontSize: 12,
-    color: 'rgba(0,0,0,0.6)',
-    width: SCREEN_WIDTH / 2,
+    width: '100%',
   },
 });
