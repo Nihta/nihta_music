@@ -15,11 +15,11 @@ import {selectTheme} from '../reducers/settingReducer';
 // Theme
 import * as themes from '../themes';
 
-// Navigation
+// Navigations
+import {navigationRef} from './utils/navigationServices';
 import RootStack from './RootStack';
-import {navigationRef} from './utils/NavigationService';
 
-function RootNavigation(props) {
+function RootNavigation() {
   // const isDarkMode = useColorScheme() === 'dark';
 
   // Lấy theme hiện tại
