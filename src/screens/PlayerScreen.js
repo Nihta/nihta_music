@@ -13,20 +13,35 @@ import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
 import ProgressSlider from '../components/ProgressSlider';
 import Cover from '../components/Cover';
 import PlaybackControl from '../containers/PlaybackControl';
+import PressableIcon from '../components/PressableIcon';
+import {useNavigation} from '@react-navigation/native';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82;
+const icons = {
+  chevronDown: {
+    name: 'expand-more',
+    type: 'material',
+    size: 26,
+  },
+  more: {
+    name: 'more-vertical',
+    type: 'feather',
+    size: 26,
+  },
+};
 
 function PlayerScreen() {
   const insets = useSafeAreaInsets();
   const currentTrack = useSelector(selectCurrentTrack);
+  const navigation = useNavigation();
 
   return (
     <>
       <ImageBackground
         style={styles.container}
         source={{uri: currentTrack?.artwork}}
-        blurRadius={60}>
-        <Gradient colors={['rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .8)']}>
+        blurRadius={40}>
+        <Gradient colors={['rgba(18, 18, 18, .2)', 'rgba(18, 18, 18, .4)']}>
           <View
             style={[
               styles.container,
@@ -38,7 +53,17 @@ function PlayerScreen() {
               },
             ]}>
             <Header>
+              <PressableIcon
+                onPress={() => navigation.goBack()}
+                iconProps={icons.chevronDown}
+                iconStyle={styles.icon}
+              />
               <HeaderText>Đang phát</HeaderText>
+              <PressableIcon
+                onPress={() => {}}
+                iconProps={icons.more}
+                iconStyle={styles.icon}
+              />
             </Header>
             <Wrapper>
               <Cover src={currentTrack.artwork} />
@@ -67,6 +92,9 @@ const styles = StyleSheet.create({
   textWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    color: '#fff',
   },
 });
 
