@@ -64,7 +64,13 @@ function PlayerFooter() {
             onPress={() => {
               navigate('player');
             }}>
-            <View style={styles.mainWrapper}>
+            <View
+              style={[
+                styles.mainWrapper,
+                {
+                  backgroundColor: theme.background2,
+                },
+              ]}>
               <Image style={styles.thumbnail} source={coverSrc} />
 
               <View style={styles.textWrapper}>
@@ -113,7 +119,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 15,
-    backgroundColor: 'white',
   },
   icon: {},
   thumbnail: {

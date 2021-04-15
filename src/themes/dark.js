@@ -1,7 +1,6 @@
 export const dark = {
   foreground: '#1ED760',
   foreground2: 'white',
-  background: '#121212',
   elevatedBG: '#1D222D',
   contrast: 'white',
   contrastTrans: 'rgba(255, 255, 255, ',
@@ -11,6 +10,8 @@ export const dark = {
 
   primary: '#00adb5',
   secondary: '#eeeeee',
+  background: '#393e46',
+  background2: '#222831',
   // text
   textColor: '#fff',
   textSecondaryColor: '#777',

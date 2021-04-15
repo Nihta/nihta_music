@@ -10,6 +10,7 @@ export const light = {
   current: 'light',
   primary: '#00adb5',
   secondary: '#eeeeee',
+  background2: 'white',
   // text
   textColor: '#000',
   textSecondaryColor: '#777',
