@@ -8,6 +8,7 @@ import ListItem from '../components/ListItem';
 
 // Redux
 import {setTheme, selectTheme} from '../reducers/settingReducer';
+import {useNavigation} from '@react-navigation/native';
 
 const icons = {
   darkMode: {
@@ -40,6 +41,7 @@ const onPressReport = () => {
 
 function SettingsScreen() {
   const theme = useTheme();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const themeMode = useSelector(selectTheme);
@@ -75,7 +77,11 @@ function SettingsScreen() {
         onPress={() => onPressReport()}
       />
 
-      <ListItem iconProps={icons.info} title={'Phiên bản'} subtitle={'0.01'} />
+      <ListItem
+        iconProps={icons.info}
+        title={'Giới thiệu'}
+        onPress={() => navigation.navigate('about')}
+      />
     </ScrollView>
   );
 }

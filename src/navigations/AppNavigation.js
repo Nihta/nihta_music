@@ -6,11 +6,11 @@ import Icon from '../components/Icon';
 
 // Navigation
 import LibraryNavigator from './LibraryNavigator';
+import SettingNavigator from './SettingNavigator';
 
 // Screens
 import TracksScreen from '../screens/TrackScreen';
 import SearchScreen from '../screens/SearchScreen';
-import SettingsScreen from '../screens/SettingScreen';
 import PlayerFooter from '../containers/PlayerFooter';
 
 const BottomTabs = createBottomTabNavigator();
@@ -67,7 +67,7 @@ const iconProvider = route => {
   };
 };
 
-function AppNavigation(props) {
+function AppNavigation() {
   return (
     <>
       <BottomTabs.Navigator
@@ -96,7 +96,7 @@ function AppNavigation(props) {
 
         <BottomTabs.Screen
           name="Settings"
-          component={SettingsScreen}
+          component={SettingNavigator}
           options={{tabBarIcon: iconProvider('Settings')}}
         />
       </BottomTabs.Navigator>
