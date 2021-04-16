@@ -44,11 +44,11 @@ const getFolder = path => {
 // TODO tạo một action trong reducer
 /**
  * Lấy danh sách các nghệ sĩ và lọc ra bài hát của họ
- * @param mediaData
+ * @param mediaDataFormated
  * @returns {{artist: string, tracks: *[]}[]}
  */
-const getArtists = mediaData => {
-  const data = _.groupBy(mediaData, 'artist');
+const getArtists = mediaDataFormated => {
+  const data = _.groupBy(mediaDataFormated, 'artist');
 
   const artists = Object.keys(data);
 
