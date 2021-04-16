@@ -31,8 +31,6 @@ const handleMediaData = mediaData => {
     };
   });
 
-  getArtists(newMediaData);
-
   return newMediaData;
 };
 
@@ -44,11 +42,11 @@ const getFolder = path => {
 // TODO tạo một action trong reducer
 /**
  * Lấy danh sách các nghệ sĩ và lọc ra bài hát của họ
- * @param mediaDataFormated
+ * @param mediaDataFormatted
  * @returns {{artist: string, tracks: *[]}[]}
  */
-const getArtists = mediaDataFormated => {
-  const data = _.groupBy(mediaDataFormated, 'artist');
+export const handleDataArtists = mediaDataFormatted => {
+  const data = _.groupBy(mediaDataFormatted, 'artist');
 
   const artists = Object.keys(data);
 
