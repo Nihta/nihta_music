@@ -2,11 +2,15 @@ import MusicFiles from '@yajanarao/react-native-get-music-files';
 // * https://github.com/reduxjs/reselect
 // import {createSelector} from 'reselect';
 
-import handleMediaData, {handleDataArtists} from './utils/handleMediaData';
+import handleMediaData, {
+  handleDataAlbums,
+  handleDataArtists,
+} from './utils/handleMediaData';
 
 // * Đặt tên action kiểu domain/action
-export const SET_MEDIA_FILES = 'media/SET_MEDIA_FILES';
-export const SET_ARTISTS = 'media/SET_ARTISTS';
+const SET_MEDIA_FILES = 'media/SET_MEDIA_FILES';
+const SET_ARTISTS = 'media/SET_ARTISTS';
+const SET_ALBUMS = 'media/SET_ALBUMS';
 
 // * Actions -------------------------------------------------------------------
 const options = {
@@ -46,9 +50,20 @@ export const getArtists = () => async (dispatch, getState) => {
   });
 };
 
+export const getAlbums = () => async (dispatch, getState) => {
+  const state = getState();
+  const mediaDataFormatted = selectMediaFiles(state);
+
+  dispatch({
+    type: SET_ALBUMS,
+    payload: handleDataAlbums(mediaDataFormatted),
+  });
+};
+
 // * Selector ------------------------------------------------------------------
 export const selectMediaFiles = state => state.media.mediaFiles;
 export const selectArtists = state => state.media.artists;
+export const selectAlbums = state => state.media.albums;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {
@@ -70,7 +85,11 @@ export default (state = initialState, {type, payload}) => {
         ...state,
         artists: payload,
       };
-
+    case SET_ALBUMS:
+      return {
+        ...state,
+        albums: payload,
+      };
     default:
       return state;
   }

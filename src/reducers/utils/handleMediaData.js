@@ -61,4 +61,25 @@ export const handleDataArtists = mediaDataFormatted => {
   return _.sortBy(dataArtists, 'artist');
 };
 
+/**
+ * Lấy danh sác các album và các bài hát thuộc album đó
+ * @param mediaDataFormatted
+ * @returns {{artist: string, tracks: *[]}[]}
+ */
+export const handleDataAlbums = mediaDataFormatted => {
+  const data = _.groupBy(mediaDataFormatted, 'album');
+
+  const albums = Object.keys(data);
+
+  /**
+   * @type {{album: string, tracks: *[]}[]}
+   */
+  const dataAlbums = albums.map(album => ({
+    album,
+    tracks: data[album],
+  }));
+
+  return _.sortBy(dataAlbums, 'album');
+};
+
 export default handleMediaData;
