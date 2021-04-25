@@ -21,16 +21,13 @@ const screenOptions = {
     backgroundColor: 'white',
   },
   headerTitleStyle: {
-    fontFamily: 'Circular',
     fontWeight: '400',
     fontSize: 18,
-    marginLeft: 30,
-    marginRight: 30,
   },
   headerTitleAlign: 'center',
-  headerBackImage: () => (
-    <Icon type="ionicon" name="chevron-back-outline" size={26} />
-  ),
+  // headerBackImage: () => (
+  //   <Icon type="ionicon" name="chevron-back-outline" size={26} />
+  // ),
 };
 
 const Stack = createStackNavigator();
