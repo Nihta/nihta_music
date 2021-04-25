@@ -4,29 +4,33 @@ import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 
 // Theme
 import {contrastTransColor} from '../themes/styles';
 
 // Redux
 import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
+
+// Components
 import ProgressSlider from '../components/ProgressSlider';
 import Cover from '../components/Cover';
+import TouchableIcon from '../components/TouchableIcon';
+
+// Containers
 import PlaybackControl from '../containers/PlaybackControl';
-import PressableIcon from '../components/PressableIcon';
-import {useNavigation} from '@react-navigation/native';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82;
 const icons = {
   chevronDown: {
     name: 'expand-more',
     type: 'material',
-    size: 26,
+    size: 30,
   },
   more: {
     name: 'more-vertical',
     type: 'feather',
-    size: 26,
+    size: 30,
   },
 };
 
@@ -41,7 +45,9 @@ function PlayerScreen() {
         style={styles.container}
         source={{uri: currentTrack?.artwork}}
         blurRadius={40}>
-        <Gradient colors={['rgba(18, 18, 18, .2)', 'rgba(18, 18, 18, .4)']}>
+        <LinearGradient
+          style={[styles.container]}
+          colors={['rgba(18, 18, 18, .2)', 'rgba(18, 18, 18, .4)']}>
           <View
             style={[
               styles.container,
@@ -52,32 +58,40 @@ function PlayerScreen() {
                 paddingRight: insets.right,
               },
             ]}>
-            <Header>
-              <PressableIcon
+            <View style={styles.header}>
+              <TouchableIcon
+                size={30}
                 onPress={() => navigation.goBack()}
                 iconProps={icons.chevronDown}
                 iconStyle={styles.icon}
               />
+
               <HeaderText>Đang phát</HeaderText>
-              <PressableIcon
-                onPress={() => {}}
+
+              <TouchableIcon
+                size={30}
+                onPress={() => null}
                 iconProps={icons.more}
                 iconStyle={styles.icon}
               />
-            </Header>
-            <Wrapper>
+            </View>
+
+            <View style={styles.wrapper}>
               <Cover src={currentTrack.artwork} />
+
               <View style={styles.textWrapper}>
                 <Title numberOfLines={1}>
                   {currentTrack?.title || 'unknown'}
                 </Title>
                 <Artist numberOfLines={1}>{currentTrack?.artist}</Artist>
               </View>
+
               <ProgressSlider />
+
               <PlaybackControl />
-            </Wrapper>
+            </View>
           </View>
-        </Gradient>
+        </LinearGradient>
       </ImageBackground>
     </>
   );
@@ -96,31 +110,24 @@ const styles = StyleSheet.create({
   icon: {
     color: '#fff',
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor: 'green',
+  },
+  wrapper: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
 });
 
-const Gradient = styled(LinearGradient)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Header = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: ${PlayerWidth + 10}px;
-  margin-top: 10px;
-`;
-
 const HeaderText = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: normal;
   color: ${contrastTransColor(0.75)};
-`;
-
-const Wrapper = styled.View`
-  flex: 1;
-  justify-content: space-evenly;
-  align-items: center;
 `;
 
 const Title = styled.Text`
@@ -131,7 +138,7 @@ const Title = styled.Text`
 `;
 
 const Artist = styled.Text`
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 4px;
   color: ${props => props.theme.textLight};
   width: ${PlayerWidth}px;
