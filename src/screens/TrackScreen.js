@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {FlatList, StatusBar} from 'react-native';
+import {FlatList, StyleSheet, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -10,19 +9,25 @@ import {
   selectCurrentTrack,
   setCurrentTrack,
 } from '../reducers/musicPlayerReducer';
+import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 
 // Components
 import Toast from '../components/Toast';
 import Track from '../components/Track';
-import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
+
+// Services
 import setupPlayer from '../services/setupPlayer';
 
 // Utils
 import {checkStoragePermission, getStoragePermission} from '../utils';
 
+// Themes
+import {FONT_SIZE_14, FONT_SIZE_16} from '../themes/typography';
+
 function TracksScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
   const trackData = useSelector(selectMediaFiles);
   const currentTrack = useSelector(selectCurrentTrack);
 
@@ -37,7 +42,7 @@ function TracksScreen() {
         Toast('Quyét nhạc xong!');
       })();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [dispatch]);
 
@@ -46,16 +51,16 @@ function TracksScreen() {
       .then(() => {
         console.log('The player is ready to be used!');
       })
-      .catch(reason => console.log(reason));
+      .catch(reason => console.error(reason));
   }, []);
 
   if (!trackData || trackData.length === 0) {
     return (
-      <MessageWrapper>
-        <Message numberOfLines={2}>
+      <SafeAreaView style={[styles.container, styles.center]}>
+        <Text style={styles.message} numberOfLines={2}>
           Không tìm thấy bất kì bản nhạc nào trên thiết bị của bạn
-        </Message>
-      </MessageWrapper>
+        </Text>
+      </SafeAreaView>
     );
   }
 
@@ -81,16 +86,19 @@ function TracksScreen() {
   );
 }
 
-const MessageWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Message = styled.Text`
-  font-size: 16px;
-  margin: 0 55px 0 55px;
-  text-align: center;
-`;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  message: {
+    fontSize: FONT_SIZE_16,
+    marginHorizontal: 40,
+    textAlign: 'center',
+  },
+});
 
 export default TracksScreen;
