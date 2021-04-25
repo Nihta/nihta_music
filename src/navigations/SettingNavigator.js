@@ -20,7 +20,7 @@ function SettingNavigator() {
       <Stack.Screen
         name="about"
         options={{
-          title: 'Về chúng tôi',
+          title: 'Giới thiệu',
         }}
         component={AboutScreen}
       />
