@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ImageBackground, StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -20,7 +20,12 @@ import TouchableIcon from '../components/TouchableIcon';
 // Containers
 import PlaybackControl from '../containers/PlaybackControl';
 
-const PlayerWidth = Dimensions.get('window').width * 0.82;
+// Themes
+import {WINDOW_WIDTH} from '../themes/mixins';
+import {SCALE_10, SCALE_4} from '../themes/spacing';
+import {FONT_SIZE_14, FONT_SIZE_16, FONT_SIZE_18} from '../themes/typography';
+
+const PlayerWidth = WINDOW_WIDTH * 0.82;
 const icons = {
   chevronDown: {
     name: 'expand-more',
@@ -114,8 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
-    backgroundColor: 'green',
+    marginTop: SCALE_10,
   },
   wrapper: {
     flex: 1,
@@ -125,21 +129,21 @@ const styles = StyleSheet.create({
 });
 
 const HeaderText = styled.Text`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_18}px;
   font-weight: normal;
   color: ${contrastTransColor(0.75)};
 `;
 
 const Title = styled.Text`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_16}px;
   color: ${props => props.theme.textLight};
   width: ${PlayerWidth}px;
   text-align: center;
 `;
 
 const Artist = styled.Text`
-  font-size: 14px;
-  margin-top: 4px;
+  font-size: ${FONT_SIZE_14}px;
+  margin-top: ${SCALE_4}px;
   color: ${props => props.theme.textLight};
   width: ${PlayerWidth}px;
   text-align: center;

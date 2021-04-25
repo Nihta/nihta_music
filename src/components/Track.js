@@ -1,18 +1,24 @@
 import React from 'react';
-import {
-  Image,
-  Dimensions,
-  StyleSheet,
-  TouchableNativeFeedback,
-} from 'react-native';
+import {View, Image, StyleSheet, TouchableNativeFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 // Components
-import Icon from './Icon';
+import TouchableIcon from './TouchableIcon';
+
+// Styles
+import {WINDOW_WIDTH} from '../themes/mixins';
+import {SCALE_16} from '../themes/spacing';
+import {FONT_SIZE_14, FONT_SIZE_16} from '../themes/typography';
 
 const placeholder = require('../../assets/images/placeholder.jpg');
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
+const icons = {
+  more: {
+    name: 'more-vertical',
+    type: 'feather',
+    size: 30,
+  },
+};
 
 function Track(props) {
   const {item, onPress} = props;
@@ -21,56 +27,59 @@ function Track(props) {
 
   return (
     <TouchableNativeFeedback onPress={onPress}>
-      <Wrapper>
+      <View style={styles.wrapper}>
         <Image source={coverSrc} style={styles.thumbnail} />
-        <TextWrapper>
+        <View style={styles.textWrapper}>
           <Title numberOfLines={1}>{item.title}</Title>
           <Artist numberOfLines={1}>{item.artist}</Artist>
-        </TextWrapper>
-        <StyledIcon name="ellipsis-vertical" type="ionicon" size={25} />
-      </Wrapper>
+        </View>
+
+        <TouchableIcon
+          size={30}
+          onPress={() => null}
+          iconProps={icons.more}
+          iconStyle={styles.icon}
+        />
+      </View>
     </TouchableNativeFeedback>
   );
 }
 
-const Wrapper = styled.View`
-  flex-direction: row;
-  align-items: center;
-  height: 65px;
-  padding-left: 15px;
-`;
-
-const TextWrapper = styled.View`
-  flex-direction: column;
-  flex: 1;
-  height: 52px;
-  margin-left: 15px;
-  justify-content: space-evenly;
-`;
-
-const Title = styled.Text`
-  font-size: 16px;
-  width: ${SCREEN_WIDTH / 1.5}px;
-  color: ${props => props.theme.textColor};
-`;
-
-const Artist = styled.Text`
-  font-size: 14px;
-  width: ${SCREEN_WIDTH / 1.5}px;
-  color: ${props => props.theme.textSecondaryColor};
-`;
-
-const StyledIcon = styled(Icon)`
-  padding: 10px;
-`;
-
 const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 65,
+    paddingLeft: SCALE_16,
+  },
   thumbnail: {
     height: 48,
     width: 48,
     borderRadius: 8,
     resizeMode: 'cover',
   },
+  textWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    height: 52,
+    marginLeft: SCALE_16,
+    justifyContent: 'space-evenly',
+  },
+  icon: {
+    paddingRight: 10,
+  },
 });
+
+const Title = styled.Text`
+  font-size: ${FONT_SIZE_16}px;
+  width: ${WINDOW_WIDTH / 1.5}px;
+  color: ${props => props.theme.textColor};
+`;
+
+const Artist = styled.Text`
+  font-size: ${FONT_SIZE_14}px;
+  width: ${WINDOW_WIDTH / 1.5}px;
+  color: ${props => props.theme.textSecondaryColor};
+`;
 
 export default Track;
