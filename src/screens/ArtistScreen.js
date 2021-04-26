@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
 
 // Redux
 import {getArtists, selectArtists} from '../reducers/mediaReducer';
-import ListItem from '../components/ListItem';
+
+// Components
 import PressableIcon from '../components/PressableIcon';
+import ListItem from '../components/ListItem';
 
 const icons = {
   folder: {
@@ -17,6 +20,8 @@ const icons = {
 
 function ArtistsScreen(props) {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const artists = useSelector(selectArtists);
 
   console.log(artists);
@@ -53,6 +58,12 @@ function ArtistsScreen(props) {
                   }}
                 />
               }
+              onPress={() => {
+                navigation.navigate('track-list-filter', {
+                  name: item.artist,
+                  trackData: item.tracks,
+                });
+              }}
             />
           )}
         />
