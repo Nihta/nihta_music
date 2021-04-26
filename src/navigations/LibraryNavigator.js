@@ -10,6 +10,7 @@ import ArtistScreen from '../screens/ArtistScreen';
 import FolderScreen from '../screens/FolderScreen';
 import LibraryScreen from '../screens/LibraryScreen';
 import PlaylistScreen from '../screens/PlaylistScreen';
+import TrackListFilterScreen from '../screens/TrackListFilterScreen';
 
 /**
  * @type {import('@react-navigation/stack').StackNavigationOptions}
@@ -60,6 +61,12 @@ function LibraryNavigator() {
         name="folder"
         component={FolderScreen}
         options={{title: 'Thư mục'}}
+      />
+
+      <Stack.Screen
+        name="track-list-filter"
+        component={TrackListFilterScreen}
+        options={({route}) => ({title: route.params.name})}
       />
     </Stack.Navigator>
   );
