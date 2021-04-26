@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -13,7 +13,6 @@ import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 
 // Components
 import Toast from '../components/Toast';
-import Track from '../components/Track';
 
 // Services
 import setupPlayer from '../services/setupPlayer';
@@ -22,7 +21,8 @@ import setupPlayer from '../services/setupPlayer';
 import {checkStoragePermission, getStoragePermission} from '../utils';
 
 // Themes
-import {FONT_SIZE_14, FONT_SIZE_16} from '../themes/typography';
+import {FONT_SIZE_16} from '../themes/typography';
+import TrackList from '../containers/TrackList';
 
 function TracksScreen() {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function TracksScreen() {
   useEffect(() => {
     setupPlayer()
       .then(() => {
-        console.log('The player is ready to be used!');
+        console.info('The player is ready to be used!');
       })
       .catch(reason => console.error(reason));
   }, []);
@@ -66,21 +66,14 @@ function TracksScreen() {
 
   return (
     <SafeAreaView>
-      <FlatList
-        keyExtractor={asset => asset.id.toString()}
-        data={trackData}
-        renderItem={({item}) => (
-          <Track
-            item={item}
-            onPress={async () => {
-              if (!currentTrack || item.id !== currentTrack.id) {
-                await dispatch(setCurrentTrack(item));
-              }
-
-              navigation.navigate('player');
-            }}
-          />
-        )}
+      <TrackList
+        trackData={trackData}
+        handlePressItem={async item => {
+          if (!currentTrack || item.id !== currentTrack.id) {
+            await dispatch(setCurrentTrack(item));
+          }
+          navigation.navigate('player');
+        }}
       />
     </SafeAreaView>
   );
