@@ -5,8 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SettingsScreen from '../screens/SettingScreen';
 import AboutScreen from '../screens/AboutScreen';
 
-const noHeader = {headerShown: false};
-
 const Stack = createStackNavigator();
 
 function SettingNavigator() {
@@ -15,7 +13,10 @@ function SettingNavigator() {
       <Stack.Screen
         name="setting"
         component={SettingsScreen}
-        options={noHeader}
+        options={{
+          title: 'Cài đặt',
+          headerTitleAlign: 'center',
+        }}
       />
       <Stack.Screen
         name="about"
