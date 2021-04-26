@@ -51,6 +51,7 @@ const forModalPresentationIOS = ({
 
 const modalScreenOptions = {
   ...TransitionPresets.ModalPresentationIOS,
+  // ! Comment dòng này để giải quyết: "Warning: Can't perform a React state update on an unmounted component ..."
   gestureEnabled: true,
   headerShown: false,
   cardStyleInterpolator: forModalPresentationIOS,
