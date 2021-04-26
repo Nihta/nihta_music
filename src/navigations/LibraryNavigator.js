@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
 // Components
-import Icon from '../components/Icon';
+// import Icon from '../components/Icon';
 
 // Screens
 import AlbumScreen from '../screens/AlbumsScreen';
@@ -18,11 +18,9 @@ const screenOptions = {
   ...TransitionPresets.ScaleFromCenterAndroid,
   headerStyle: {
     elevation: 0,
-    backgroundColor: 'white',
   },
   headerTitleStyle: {
-    fontWeight: '400',
-    fontSize: 18,
+    // fontSize: 20,
   },
   headerTitleAlign: 'center',
   // headerBackImage: () => (
