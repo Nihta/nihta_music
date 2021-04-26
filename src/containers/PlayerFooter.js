@@ -22,9 +22,11 @@ import {
 
 // Components
 import ProgressBar from '../components/ProgressBar';
-import PressableIcon from '../components/PressableIcon';
+import TouchableIcon from '../components/TouchableIcon';
 
-const placeholder = require('../../assets/images/placeholder.jpg');
+// Themes
+import {SCALE_12} from '../themes/spacing';
+import {WINDOW_WIDTH} from '../themes/mixins';
 
 const icons = {
   playIcon: {
@@ -40,8 +42,10 @@ const icons = {
 };
 
 function PlayerFooter() {
-  const theme = useTheme();
   const dispatch = useDispatch();
+
+  const theme = useTheme();
+
   const isPlaying = useSelector(selectIsPlaying);
   const currentTrack = useSelector(selectCurrentTrack);
 
@@ -50,9 +54,11 @@ function PlayerFooter() {
   };
 
   const showFooter = !!currentTrack;
+
   const coverSrc = currentTrack?.artwork
     ? {uri: currentTrack.artwork}
-    : placeholder;
+    : require('../../assets/images/placeholder.jpg');
+
   const {position, duration} = useTrackPlayerProgress(100);
   const progress = position / duration;
 
@@ -86,7 +92,7 @@ function PlayerFooter() {
                 </Text>
               </View>
 
-              <PressableIcon
+              <TouchableIcon
                 iconStyle={[styles.icon, {color: theme.textColor}]}
                 iconProps={isPlaying ? icons.pauseIcon : icons.playIcon}
                 onPress={togglePlayback}
@@ -107,18 +113,16 @@ function PlayerFooter() {
   );
 }
 
-export default PlayerFooter;
-
 const styles = StyleSheet.create({
   mainWrapper: {
-    height: 60,
     position: 'absolute',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 60,
     left: 0,
     right: 0,
     bottom: 49,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: 15,
+    paddingLeft: SCALE_12,
   },
   icon: {},
   thumbnail: {
@@ -139,7 +143,7 @@ const styles = StyleSheet.create({
   },
   progress: {
     height: 2,
-    width: '100%',
+    width: WINDOW_WIDTH,
     backgroundColor: '#ccc',
   },
   title: {
@@ -151,3 +155,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+export default PlayerFooter;
