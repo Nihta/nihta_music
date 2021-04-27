@@ -1,7 +1,7 @@
 import TrackPlayer from 'react-native-track-player';
 
 // Redux
-import store from '../store';
+import store from '../config/store';
 import {
   musicPlayerJump,
   selectCurrentTrack,
@@ -59,20 +59,17 @@ export default async function () {
   /**
    * Fired when the queue reaches the end.
    */
-  TrackPlayer.addEventListener(
-    'playback-queue-ended',
-    ({position, previousTrackId}) => {
-      const state = store.getState();
-      const loop = selectLoop(state);
-      const currentTrack = selectCurrentTrack(state);
+  TrackPlayer.addEventListener('playback-queue-ended', ({position}) => {
+    const state = store.getState();
+    const loop = selectLoop(state);
+    const currentTrack = selectCurrentTrack(state);
 
-      if (position > 0) {
-        if (loop) {
-          store.dispatch(setCurrentTrack(currentTrack));
-        } else {
-          store.dispatch(musicPlayerJump('next'));
-        }
+    if (position > 0) {
+      if (loop) {
+        store.dispatch(setCurrentTrack(currentTrack));
+      } else {
+        store.dispatch(musicPlayerJump('next'));
       }
-    },
-  );
+    }
+  });
 }
