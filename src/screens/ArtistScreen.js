@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
@@ -9,6 +9,7 @@ import {getArtists, selectArtists} from '../reducers/mediaReducer';
 // Components
 import ListItem from '../components/ListItem';
 import TouchableIcon from '../components/TouchableIcon';
+import NoData from '../components/NoData';
 
 const icons = {
   folder: {
@@ -29,19 +30,20 @@ function ArtistsScreen(props) {
 
   const artists = useSelector(selectArtists);
 
-  console.log(artists);
-
   useEffect(() => {
     dispatch(getArtists());
   }, [dispatch]);
 
   if (artists.length === 0) {
-    return (
-      <View>
-        <Text>Không có nghệ sĩ nào</Text>
-      </View>
-    );
+    return <NoData title="Không có nghệ sĩ nào" />;
   }
+
+  const handlePressListItem = item => {
+    navigation.navigate('track-list-filter', {
+      name: item.artist,
+      trackData: item.tracks,
+    });
+  };
 
   return (
     <>
@@ -54,17 +56,9 @@ function ArtistsScreen(props) {
               title={item.artist}
               subtitle={`${item.tracks.length} bài hát`}
               iconProps={icons.folder}
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                paddingRight: 6,
-              }}
+              style={styles.listItem}
               rightElement={<TouchableIcon iconProps={icons.more} />}
-              onPress={() => {
-                navigation.navigate('track-list-filter', {
-                  name: item.artist,
-                  trackData: item.tracks,
-                });
-              }}
+              onPress={() => handlePressListItem(item)}
             />
           )}
         />
@@ -72,5 +66,11 @@ function ArtistsScreen(props) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  listItem: {
+    paddingRight: 6,
+  },
+});
 
 export default ArtistsScreen;
