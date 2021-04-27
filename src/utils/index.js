@@ -9,8 +9,10 @@ export * from './permission';
  */
 export const randomIntegerInRange = (min, max, ignore) => {
   let res = 0;
+
   do {
     res = Math.floor(Math.random() * (max - min + 1)) + min;
-  } while (max - min > 1 && res !== ignore);
+  } while (max - min > 1 && res === ignore);
+
   return res;
 };
