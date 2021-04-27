@@ -1,80 +1,88 @@
 import React from 'react';
-import {Dimensions, TouchableNativeFeedback} from 'react-native';
-import styled from 'styled-components/native';
+import {Text, View, StyleSheet, TouchableNativeFeedback} from 'react-native';
+import {useTheme} from 'styled-components/native';
 
 // Components
 import Icon from './Icon';
 
 // Theme
-import {contrastColor, contrastTransColor} from '../themes/styles';
-
-const ScreenWidth = Dimensions.get('window').width;
+import {WINDOW_WIDTH} from '../themes/mixins';
+import {SCALE_16} from '../themes/spacing';
+import {FONT_SIZE_14, FONT_SIZE_16} from '../themes/typography';
 
 function ListItem({
   title,
-  subtitle,
-  titleStyle,
-  rightElement,
   onPress,
-  onLongPress,
-  delayLongPress,
+  subtitle,
   iconProps,
+  titleStyle,
+  onLongPress,
+  rightElement,
+  subtitleStyle,
+  delayLongPress,
 }) {
+  const theme = useTheme();
+
   return (
     <TouchableNativeFeedback
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={delayLongPress}>
-      <Wrapper>
-        <StyledIcon {...iconProps} />
-        <TextWrapper>
-          <Title style={titleStyle} numberOfLines={1}>
+      <View style={styles.wrapper}>
+        <Icon style={[styles.icon, {color: theme.contrast}]} {...iconProps} />
+
+        <View style={styles.textWrapper}>
+          <Text
+            style={[styles.title, {color: theme.textColor}, titleStyle]}
+            numberOfLines={1}>
             {title}
-          </Title>
-          {subtitle && <SubTitle style={subtitle}>{subtitle}</SubTitle>}
-        </TextWrapper>
-        <RightWrapper>{rightElement && rightElement}</RightWrapper>
-      </Wrapper>
+          </Text>
+
+          {subtitle && (
+            <Text
+              style={[
+                styles.subTitle,
+                {color: theme.textSecondaryColor},
+                subtitleStyle,
+              ]}>
+              {subtitle}
+            </Text>
+          )}
+        </View>
+
+        <View style={styles.rightWrapper}>{rightElement}</View>
+      </View>
     </TouchableNativeFeedback>
   );
 }
 
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 60,
+    marginVertical: 4,
+    paddingHorizontal: SCALE_16,
+  },
+  icon: {
+    padding: 5,
+    marginRight: 12,
+  },
+  textWrapper: {
+    flex: 1,
+    height: '85%',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+  },
+  rightWrapper: {},
+  title: {
+    fontSize: FONT_SIZE_16,
+    width: WINDOW_WIDTH / 2,
+  },
+  subTitle: {
+    fontSize: FONT_SIZE_14,
+  },
+});
+
 export default ListItem;
-
-const Wrapper = styled.View`
-  flex-direction: row;
-  align-items: center;
-  height: 60px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-`;
-
-const StyledIcon = styled(Icon)`
-  padding: 5px;
-  margin-left: 12px;
-  margin-right: 12px;
-  color: ${contrastColor};
-`;
-
-const TextWrapper = styled.View`
-  height: 85%;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-`;
-
-const Title = styled.Text`
-  font-size: 16px;
-  color: ${contrastColor};
-  width: ${ScreenWidth / 2}px;
-`;
-
-const SubTitle = styled.Text`
-  font-size: 14px;
-  color: ${contrastTransColor(0.75)};
-`;
-
-const RightWrapper = styled.View`
-  margin-right: 10px;
-`;
