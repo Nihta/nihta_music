@@ -108,9 +108,10 @@ function PlaybackControl() {
         <PressableIcon
           onPress={onShufflePress}
           iconProps={icons.shuffle}
-          iconStyle={{
-            color: shuffle ? 'rgba(255,255,255,0.16)' : '#fff',
-          }}
+          iconStyle={[
+            styles.icon,
+            shuffle ? styles.iconActive : styles.iconDisable,
+          ]}
         />
 
         <PressableIcon
@@ -138,9 +139,7 @@ function PlaybackControl() {
         <PressableIcon
           onPress={onLoopPress}
           iconProps={loop ? icons.loopOne : icons.loop}
-          iconStyle={{
-            color: '#ccc',
-          }}
+          iconStyle={styles.icon}
         />
       </View>
     </>
@@ -172,6 +171,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#fff',
+  },
+  iconActive: {
+    color: '#fff',
+  },
+  iconDisable: {
+    color: 'rgba(255,255,255,0.4)',
   },
 });
 
