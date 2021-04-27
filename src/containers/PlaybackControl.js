@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Dimensions,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 // Redux
@@ -23,8 +18,12 @@ import {
 // Components
 import Icon from '../components/Icon';
 import PressableIcon from '../components/PressableIcon';
+import Toast from '../components/Toast';
 
-const WrapperWidth = Dimensions.get('window').width * 0.82;
+// Themes
+import {WINDOW_WIDTH} from '../themes/mixins';
+
+const WrapperWidth = WINDOW_WIDTH * 0.8;
 
 const icons = {
   play: {
@@ -80,7 +79,13 @@ function PlaybackControl() {
   };
 
   const onLoopPress = () => {
-    dispatch(setLoop(!loop));
+    if (loop) {
+      Toast('Không lặp lại');
+      dispatch(setShuffle(false));
+    } else {
+      Toast('Lặp lại bài hát hiện tại');
+      dispatch(setLoop(true));
+    }
   };
 
   const onPlayPress = () => {
@@ -88,7 +93,13 @@ function PlaybackControl() {
   };
 
   const onShufflePress = () => {
-    dispatch(setShuffle(!shuffle));
+    if (shuffle) {
+      Toast('Phát tuần tự');
+      dispatch(setShuffle(false));
+    } else {
+      Toast('Phát ngẫu nhiên');
+      dispatch(setShuffle(true));
+    }
   };
 
   return (
