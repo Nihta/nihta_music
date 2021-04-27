@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -13,6 +13,7 @@ import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 
 // Components
 import Toast from '../components/Toast';
+import NoData from '../components/NoData';
 
 // Services
 import setupPlayer from '../services/setupPlayer';
@@ -21,7 +22,6 @@ import setupPlayer from '../services/setupPlayer';
 import {checkStoragePermission, getStoragePermission} from '../utils';
 
 // Themes
-import {FONT_SIZE_16} from '../themes/typography';
 import TrackList from '../containers/TrackList';
 
 function TracksScreen() {
@@ -56,11 +56,10 @@ function TracksScreen() {
 
   if (!trackData || trackData.length === 0) {
     return (
-      <SafeAreaView style={[styles.container, styles.center]}>
-        <Text style={styles.message} numberOfLines={2}>
-          Không tìm thấy bất kì bản nhạc nào trên thiết bị của bạn
-        </Text>
-      </SafeAreaView>
+      <NoData
+        title="Không tìm thấy bất kì bản nhạc nào trên thiết bị của bạn"
+        style={styles.mb0}
+      />
     );
   }
 
@@ -80,17 +79,8 @@ function TracksScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  message: {
-    fontSize: FONT_SIZE_16,
-    marginHorizontal: 40,
-    textAlign: 'center',
+  mb0: {
+    marginBottom: 0,
   },
 });
 
