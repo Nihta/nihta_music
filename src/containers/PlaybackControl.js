@@ -81,7 +81,7 @@ function PlaybackControl() {
   const onLoopPress = () => {
     if (loop) {
       Toast('Không lặp lại');
-      dispatch(setShuffle(false));
+      dispatch(setLoop(false));
     } else {
       Toast('Lặp lại bài hát hiện tại');
       dispatch(setLoop(true));
