@@ -10,7 +10,13 @@ import {WINDOW_WIDTH} from '../themes/mixins';
 import {SCALE_16} from '../themes/spacing';
 import {FONT_SIZE_14, FONT_SIZE_16} from '../themes/typography';
 
+/**
+ *
+ * @param {{style?: import('react-native').StyleProp<import('react-native').ViewStyle>}} props
+ * @returns
+ */
 function ListItem({
+  style,
   title,
   onPress,
   subtitle,
@@ -28,7 +34,7 @@ function ListItem({
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={delayLongPress}>
-      <View style={styles.wrapper}>
+      <View style={[styles.wrapper, style]}>
         <Icon style={[styles.icon, {color: theme.contrast}]} {...iconProps} />
 
         <View style={styles.textWrapper}>
