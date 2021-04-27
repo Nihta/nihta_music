@@ -2,13 +2,13 @@ import React from 'react';
 import {Linking, ScrollView, Switch} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTheme} from 'styled-components/native';
+import {useNavigation} from '@react-navigation/native';
 
 // Components
 import ListItem from '../components/ListItem';
 
 // Redux
 import {setTheme, selectTheme} from '../reducers/settingReducer';
-import {useNavigation} from '@react-navigation/native';
 
 const icons = {
   darkMode: {
@@ -41,9 +41,8 @@ const onPressReport = () => {
 
 function SettingsScreen() {
   const theme = useTheme();
-  const navigation = useNavigation();
   const dispatch = useDispatch();
-
+  const navigation = useNavigation();
   const themeMode = useSelector(selectTheme);
 
   return (
@@ -54,13 +53,13 @@ function SettingsScreen() {
         subtitle={'Chuyển giao diện tối'}
         rightElement={
           <Switch
+            value={themeMode === 'dark'}
             thumbColor={
               themeMode === 'light' ? theme.elevatedBG : theme.foreground
             }
-            value={themeMode === 'dark'}
             trackColor={{
-              true: `${theme.fgTrans}0.3))`,
-              false: `${theme.fgTrans}0.3))`,
+              true: '#555',
+              false: '#ccc',
             }}
             disabled
           />
@@ -86,12 +85,10 @@ function SettingsScreen() {
   );
 }
 
-export default SettingsScreen;
-
 const styles = {
   scroll: {
     flex: 1,
-    marginTop: 20,
-    marginBottom: 60,
   },
 };
+
+export default SettingsScreen;
