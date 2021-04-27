@@ -80,7 +80,7 @@ function PlaybackControl() {
 
   const onLoopPress = () => {
     if (loop) {
-      Toast('Không lặp lại');
+      Toast('Lặp lại tất cả bài hát');
       dispatch(setLoop(false));
     } else {
       Toast('Lặp lại bài hát hiện tại');
