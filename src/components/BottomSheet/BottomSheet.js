@@ -47,7 +47,7 @@ function BottomSheet({onDismiss, visible, children}) {
         useNativeDriver: false,
       }),
       onPanResponderRelease: (_, gestureState) => {
-        // ! Chiều BottomSheet nhỏ có thể dẫn đến việc đóng BottomSheet nhưng
+        // ! Chiều cao BottomSheet nhỏ có thể dẫn đến việc đóng BottomSheet nhưng
         // ! không đóng overlay
         if (gestureState.dy > 0 && gestureState.vy > 1) {
           return handleDismiss();
@@ -63,6 +63,7 @@ function BottomSheet({onDismiss, visible, children}) {
       animationType="fade"
       visible={visible}
       transparent
+      statusBarTranslucent
       onRequestClose={handleDismiss}>
       <TouchableWithoutFeedback onPress={handleDismiss}>
         <View style={styles.overlay}>
