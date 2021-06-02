@@ -9,14 +9,18 @@ import Track from '../components/Track';
  * @param {{trackData: *[], handlePressItem: (item) => void}}
  * @returns
  */
-function TrackList({trackData, handlePressItem}) {
+function TrackList({trackData, handlePressItem, handlePressMoreItem}) {
   return (
     <>
       <FlatList
         keyExtractor={asset => asset.id.toString()}
         data={trackData}
         renderItem={({item}) => (
-          <Track item={item} onPress={() => handlePressItem(item)} />
+          <Track
+            item={item}
+            onPress={() => handlePressItem(item)}
+            onPressMore={() => handlePressMoreItem(item)}
+          />
         )}
       />
     </>

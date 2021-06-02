@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -14,6 +14,7 @@ import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 // Components
 import Toast from '../components/Toast';
 import NoData from '../components/NoData';
+import BottomSheet, {BottomSheetListItem} from '../components/BottomSheet';
 
 // Services
 import setupPlayer from '../services/setupPlayer';
@@ -23,10 +24,65 @@ import {checkStoragePermission, getStoragePermission} from '../utils';
 
 // Themes
 import TrackList from '../containers/TrackList';
+import {trashIcon, albumsIcon, artistIcon} from '../config/defineIcon';
+
+function TrackActions({visible, onDismiss, onPressItem}) {
+  return (
+    <BottomSheet visible={visible} onDismiss={onDismiss}>
+      {handleDismiss => {
+        return (
+          <View>
+            <BottomSheetListItem
+              text="Thêm vào playlist"
+              onPress={() => {
+                handleDismiss();
+                onPressItem();
+              }}
+            />
+            <BottomSheetListItem
+              text="Xem album"
+              iconProps={albumsIcon}
+              onPress={() => {
+                handleDismiss();
+                onPressItem();
+              }}
+            />
+            <BottomSheetListItem
+              text="Xem nghệ sĩ"
+              iconProps={artistIcon}
+              onPress={() => {
+                handleDismiss();
+                onPressItem();
+              }}
+            />
+            <BottomSheetListItem
+              text="Ẩn"
+              onPress={() => {
+                handleDismiss();
+                onPressItem();
+              }}
+            />
+
+            <BottomSheetListItem
+              iconProps={trashIcon}
+              text="Xóa file"
+              onPress={() => {
+                handleDismiss();
+                onPressItem();
+              }}
+            />
+          </View>
+        );
+      }}
+    </BottomSheet>
+  );
+}
 
 function TracksScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const [visibleBts, setVisibleBts] = useState(false);
 
   const trackData = useSelector(selectMediaFiles);
   const currentTrack = useSelector(selectCurrentTrack);
@@ -63,18 +119,34 @@ function TracksScreen() {
     );
   }
 
+  const onDismissBottomSheet = () => {
+    setVisibleBts(false);
+  };
+
   return (
-    <SafeAreaView>
-      <TrackList
-        trackData={trackData}
-        handlePressItem={async item => {
-          if (!currentTrack || item.id !== currentTrack.id) {
-            await dispatch(setCurrentTrack(item));
-          }
-          navigation.navigate('player');
+    <>
+      <TrackActions
+        visible={visibleBts}
+        onDismiss={onDismissBottomSheet}
+        onPressItem={() => {
+          setVisibleBts(false);
         }}
       />
-    </SafeAreaView>
+      <SafeAreaView>
+        <TrackList
+          trackData={trackData}
+          handlePressItem={async item => {
+            if (!currentTrack || item.id !== currentTrack.id) {
+              await dispatch(setCurrentTrack(item));
+            }
+            navigation.navigate('player');
+          }}
+          handlePressMoreItem={() => {
+            setVisibleBts(true);
+          }}
+        />
+      </SafeAreaView>
+    </>
   );
 }
 
