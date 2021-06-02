@@ -47,6 +47,8 @@ function BottomSheet({onDismiss, visible, children}) {
         useNativeDriver: false,
       }),
       onPanResponderRelease: (_, gestureState) => {
+        // ! Chiều BottomSheet nhỏ có thể dẫn đến việc đóng BottomSheet nhưng
+        // ! không đóng overlay
         if (gestureState.dy > 0 && gestureState.vy > 1) {
           return handleDismiss();
         }
