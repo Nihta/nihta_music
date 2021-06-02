@@ -21,7 +21,7 @@ const icons = {
 };
 
 function Track(props) {
-  const {item, onPress} = props;
+  const {item, onPress, onPressMore} = props;
 
   const coverSrc = item.artwork ? {uri: item.artwork} : placeholder;
 
@@ -36,7 +36,7 @@ function Track(props) {
 
         <TouchableIcon
           size={30}
-          onPress={() => null}
+          onPress={onPressMore}
           iconProps={icons.more}
           iconStyle={styles.icon}
         />
