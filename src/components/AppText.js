@@ -13,6 +13,8 @@ function AppText({
 
   if (size === 'f16') {
     fontSize = styles.f16;
+  } else if (size === 'f18') {
+    fontSize = styles.f18;
   }
 
   return (
@@ -33,6 +35,10 @@ const styles = StyleSheet.create({
   f16: {
     fontSize: 16,
     lineHeight: 20,
+  },
+  f18: {
+    fontSize: 18,
+    lineHeight: 22,
   },
   fontBold: {
     fontWeight: 'bold',
