@@ -1,12 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+
+import AppText from '../AppText';
 
 import {BASE} from '../../themes/sizes';
 
 function Header({title}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.textBold}>{title}</Text>
+      <AppText size="f16" text={title} bold />
     </View>
   );
 }
@@ -15,15 +17,6 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: BASE,
     paddingHorizontal: BASE * 2,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 20,
-  },
-  textBold: {
-    fontSize: 16,
-    lineHeight: 20,
-    fontWeight: 'bold',
   },
 });
 
