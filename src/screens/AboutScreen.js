@@ -1,20 +1,36 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
+
+import AppText from '../components/AppText';
 
 function AboutScreen() {
   const theme = useTheme();
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, {color: theme.textColor}]}>Nihta music</Text>
-      <Text style={[styles.content, {color: theme.textSecondaryColor}]}>
-        Version 0.0.1
-      </Text>
-      <Text style={[styles.title, {color: theme.textColor}]}>Developed by</Text>
-      <Text style={[styles.content, {color: theme.textSecondaryColor}]}>
-        Nihta
-      </Text>
+      <AppText
+        style={[styles.title, {color: theme.textColor}]}
+        text="Nihta Music"
+        size="f18"
+      />
+      <AppText
+        style={[styles.content, {color: theme.textSecondaryColor}]}
+        text="Version 0.0.1"
+        size="f16"
+      />
+
+      <AppText
+        style={[styles.title, {color: theme.textColor}]}
+        text="Developed by"
+        size="f18"
+      />
+
+      <AppText
+        style={[styles.content, {color: theme.textSecondaryColor}]}
+        text="Nihta"
+        size="f16"
+      />
     </View>
   );
 }
@@ -32,7 +48,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   content: {
-    fontSize: 16,
     marginBottom: 40,
   },
 });
