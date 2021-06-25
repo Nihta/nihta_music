@@ -1,19 +1,18 @@
 import React from 'react';
-import {BASE} from '../../themes/sizes';
+import {StyleSheet, View} from 'react-native';
 
 import Icon from '../Icon';
+import AppText from '../AppText';
 import PressableWrapper from '../PressableWrapper';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {BASE} from '../../themes/sizes';
 
 function ListItem({iconProps, iconStyle, style, text, onPress}) {
   return (
     <PressableWrapper onPress={onPress}>
       <View style={[styles.container, style]}>
         <Icon {...iconProps} style={[styles.icon, iconStyle]} />
-        <Text style={styles.text} numberOfLines={1}>
-          {text}
-        </Text>
+        <AppText style={styles.text} text={text} size="f16" numberOfLines={1} />
       </View>
     </PressableWrapper>
   );
@@ -30,8 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   text: {
-    fontSize: 16,
-    lineHeight: 20,
     paddingHorizontal: BASE * 1.5,
   },
 });
