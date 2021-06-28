@@ -5,11 +5,16 @@ import {FlatList} from 'react-native';
 import Track from '../components/Track';
 
 /**
- * Render track list
+ * Render track list (FlatList)
  * @param {{trackData: *[], handlePressItem: (item) => void}}
  * @returns
  */
-function TrackList({trackData, handlePressItem, handlePressMoreItem}) {
+function TrackList({
+  trackData,
+  handlePressItem,
+  handlePressMoreItem,
+  otherProps,
+}) {
   return (
     <>
       <FlatList
@@ -22,6 +27,7 @@ function TrackList({trackData, handlePressItem, handlePressMoreItem}) {
             onPressMore={() => handlePressMoreItem(item)}
           />
         )}
+        {...otherProps}
       />
     </>
   );
