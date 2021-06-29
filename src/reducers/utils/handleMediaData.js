@@ -82,4 +82,25 @@ export const handleDataAlbums = mediaDataFormatted => {
   return _.sortBy(dataAlbums, 'album');
 };
 
+/**
+ * Lấy danh sác các album và các bài hát thuộc album đó
+ * @param mediaDataFormatted
+ * @returns {{folder: string, tracks: *[]}[]}
+ */
+export const handleDataFolders = mediaDataFormatted => {
+  const data = _.groupBy(mediaDataFormatted, 'folder');
+
+  const folders = Object.keys(data);
+
+  /**
+   * @type {{album: string, tracks: *[]}[]}
+   */
+  const dataFolders = folders.map(folder => ({
+    folder: folder,
+    tracks: data[folder],
+  }));
+
+  return _.sortBy(dataFolders, 'folder');
+};
+
 export default handleMediaData;

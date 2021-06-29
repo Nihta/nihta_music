@@ -5,12 +5,14 @@ import MusicFiles from '@yajanarao/react-native-get-music-files';
 import handleMediaData, {
   handleDataAlbums,
   handleDataArtists,
+  handleDataFolders,
 } from './utils/handleMediaData';
 
 // * Đặt tên action kiểu domain/action
 const SET_MEDIA_FILES = 'media/SET_MEDIA_FILES';
 const SET_ARTISTS = 'media/SET_ARTISTS';
 const SET_ALBUMS = 'media/SET_ALBUMS';
+const SET_FOLDERS = 'media/setFolders';
 
 // * Actions -------------------------------------------------------------------
 const options = {
@@ -60,10 +62,21 @@ export const getAlbums = () => async (dispatch, getState) => {
   });
 };
 
+export const getFolders = () => async (dispatch, getState) => {
+  const state = getState();
+  const mediaDataFormatted = selectMediaFiles(state);
+
+  dispatch({
+    type: SET_FOLDERS,
+    payload: handleDataFolders(mediaDataFormatted),
+  });
+};
+
 // * Selector ------------------------------------------------------------------
 export const selectMediaFiles = state => state.media.mediaFiles;
 export const selectArtists = state => state.media.artists;
 export const selectAlbums = state => state.media.albums;
+export const selectFolders = state => state.media.folders;
 
 // * Reducer -------------------------------------------------------------------
 const initialState = {
@@ -71,6 +84,7 @@ const initialState = {
   artists: [],
   albums: [],
   mediaLoaded: false,
+  folders: [],
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -89,6 +103,11 @@ export default (state = initialState, {type, payload}) => {
       return {
         ...state,
         albums: payload,
+      };
+    case SET_FOLDERS:
+      return {
+        ...state,
+        folders: payload,
       };
     default:
       return state;
