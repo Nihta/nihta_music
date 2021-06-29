@@ -1,13 +1,16 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import styled, {withTheme} from 'styled-components/native';
-import TrackPlayer, {ProgressComponent} from 'react-native-track-player';
-import Slider from '@react-native-community/slider';
-import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
+import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
+import Slider from '@react-native-community/slider';
+import {withTheme} from 'styled-components/native';
+import TrackPlayer, {ProgressComponent} from 'react-native-track-player';
 
-const ScreenWidth = Dimensions.get('window').width;
-const SliderWidth = ScreenWidth * 0.9;
+import {selectCurrentTrack} from '../reducers/musicPlayerReducer';
+
+import {WINDOW_WIDTH} from '../themes/sizes';
+import AppText from './AppText';
+
+const SliderWidth = WINDOW_WIDTH * 0.9;
 
 // * https://react-native-track-player.js.org/documentation/#progresscomponent
 class ProgressSlider extends ProgressComponent {
@@ -34,22 +37,25 @@ class ProgressSlider extends ProgressComponent {
   };
 
   render() {
-    const {currentTrack, theme} = this.props;
+    const {currentTrack} = this.props;
     return (
       <View style={styles.wrapper}>
         <Slider
           value={this.getProgress()}
           style={styles.sliderStyle}
-          minimumTrackTintColor={theme.primary}
-          maximumTrackTintColor={theme.secondary}
-          thumbTintColor={theme.primary}
+          minimumTrackTintColor={'#27AE60'}
+          maximumTrackTintColor={'#F2F2F2'}
+          thumbTintColor={'#219653'}
           onValueChange={this.seekTo}
         />
         <View style={styles.timeWrapper}>
-          <TimeStyled>{this.timePassed(currentTrack.duration)}</TimeStyled>
-          <TimeStyled>
+          <AppText style={styles.time}>
+            {this.timePassed(currentTrack.duration)}
+          </AppText>
+
+          <AppText style={styles.time}>
             {this.secToTimeDuration(currentTrack.duration)}
-          </TimeStyled>
+          </AppText>
         </View>
       </View>
     );
@@ -66,15 +72,14 @@ const styles = StyleSheet.create({
     width: SliderWidth,
     paddingHorizontal: 15,
   },
+  time: {
+    fontSize: 14,
+    color: '#fff',
+  },
   sliderStyle: {
     width: SliderWidth,
   },
 });
-
-const TimeStyled = styled.Text`
-  font-size: 14px;
-  color: white;
-`;
 
 const mapStateToProps = state => ({
   currentTrack: selectCurrentTrack(state),
