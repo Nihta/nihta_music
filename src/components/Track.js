@@ -16,7 +16,7 @@ const icons = {
   more: {
     name: 'more-vertical',
     type: 'feather',
-    size: 30,
+    size: 26,
   },
 };
 
@@ -34,12 +34,14 @@ function Track(props) {
           <Artist numberOfLines={1}>{item.artist}</Artist>
         </View>
 
-        <TouchableIcon
-          size={30}
-          onPress={onPressMore}
-          iconProps={icons.more}
-          iconStyle={styles.icon}
-        />
+        {onPressMore && (
+          <TouchableIcon
+            size={26}
+            onPress={onPressMore}
+            iconProps={icons.more}
+            iconStyle={styles.icon}
+          />
+        )}
       </View>
     </TouchableNativeFeedback>
   );

@@ -3,18 +3,18 @@ import {StyleSheet, View} from 'react-native';
 
 import Icon from '../Icon';
 import AppText from '../AppText';
-import PressableWrapper from '../PressableWrapper';
+import TouchableItem from '../TouchableItem/TouchableItem';
 
 import {BASE} from '../../themes/sizes';
 
 function ListItem({iconProps, iconStyle, style, text, onPress}) {
   return (
-    <PressableWrapper onPress={onPress}>
+    <TouchableItem onPress={onPress}>
       <View style={[styles.container, style]}>
         <Icon {...iconProps} style={[styles.icon, iconStyle]} />
         <AppText style={styles.text} text={text} size="f16" numberOfLines={1} />
       </View>
-    </PressableWrapper>
+    </TouchableItem>
   );
 }
 
@@ -22,14 +22,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: BASE,
+    paddingVertical: BASE * 1.5,
     paddingHorizontal: BASE * 2,
   },
   icon: {
-    fontSize: 20,
+    fontSize: 24,
   },
   text: {
     paddingHorizontal: BASE * 1.5,
+    color: '#000',
   },
 });
 

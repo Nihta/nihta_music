@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   container: {
     borderTopRightRadius: 12,
@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: BASE * 0.5,
+    marginBottom: BASE * 2,
   },
   sliderIndicator: {
-    backgroundColor: '#cecece',
+    backgroundColor: '#bdbdbd',
     height: BASE * 0.5,
     width: BASE * 6,
   },

@@ -1,6 +1,6 @@
 export const trashIcon = {
-  name: 'trash',
-  type: 'feather',
+  name: 'trash-outline',
+  type: 'ionicon',
 };
 
 export const discIcon = {
@@ -20,5 +20,15 @@ export const albumsIcon = {
 
 export const artistIcon = {
   name: 'person-outline',
+  type: 'ionicon',
+};
+
+export const hideIcon = {
+  name: 'eye-off-outline',
+  type: 'ionicon',
+};
+
+export const listIcon = {
+  name: 'list-outline',
   type: 'ionicon',
 };
