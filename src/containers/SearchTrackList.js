@@ -7,6 +7,8 @@ import NodataNew from '../components/NodataNew';
 import SearchInput from '../components/SearchInput';
 import TrackList from '../containers/TrackList';
 
+import TrackBottomSheet from './TrackBottomSheet';
+
 import {selectMediaFiles} from '../reducers/mediaReducer';
 import {
   selectCurrentTrack,
@@ -37,6 +39,9 @@ function SearchTrackList() {
   const [data, setData] = useState([]);
   // Trạng thái đang gõ từ khóa và chưa chạy hàm filter
   const [isTyping, setIsTyping] = useState(false);
+
+  const [visibleBts, setVisibleBts] = useState(false);
+  const [trackCliked, setTrackCliked] = useState(null);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -70,8 +75,27 @@ function SearchTrackList() {
     navigation.navigate('player');
   };
 
+  const onDismissBottomSheet = () => {
+    setVisibleBts(false);
+    setTrackCliked(null);
+  };
+
+  const handlePressMoreItem = item => {
+    setVisibleBts(true);
+    setTrackCliked(item);
+  };
+
   return (
     <>
+      <TrackBottomSheet
+        trackItem={trackCliked}
+        visible={visibleBts}
+        onPressItem={() => {
+          setVisibleBts(false);
+        }}
+        onDismiss={onDismissBottomSheet}
+      />
+
       <SearchInput
         placeholder="Nhập tên bài hát, nghệ sĩ"
         setSearchInput={setTextFind}
@@ -84,11 +108,12 @@ function SearchTrackList() {
         />
       ) : (
         <TrackList
-          contentContainerStyle={styles.trackList}
           trackData={data}
           indicatorStyle={'white'}
-          ListEmptyComponent={<ListEmptyComponent isShow={!isTyping} />}
+          contentContainerStyle={styles.trackList}
           handlePressItem={handlePressTrackItem}
+          handlePressMoreItem={handlePressMoreItem}
+          ListEmptyComponent={<ListEmptyComponent isShow={!isTyping} />}
         />
       )}
     </>
