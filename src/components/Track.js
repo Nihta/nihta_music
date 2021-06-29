@@ -20,9 +20,7 @@ const icons = {
   },
 };
 
-function Track(props) {
-  const {item, onPress, onPressMore} = props;
-
+function Track({item, onPress, onPressMore, titleStyle}) {
   const coverSrc = item.artwork ? {uri: item.artwork} : placeholder;
 
   return (
@@ -30,7 +28,9 @@ function Track(props) {
       <View style={styles.wrapper}>
         <Image source={coverSrc} style={styles.thumbnail} />
         <View style={styles.textWrapper}>
-          <Title numberOfLines={1}>{item.title}</Title>
+          <Title numberOfLines={1} style={titleStyle}>
+            {item.title}
+          </Title>
           <Artist numberOfLines={1}>{item.artist}</Artist>
         </View>
 

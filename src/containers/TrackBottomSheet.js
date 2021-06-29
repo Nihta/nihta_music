@@ -19,7 +19,9 @@ function TrackBottomSheet({visible, trackItem, onDismiss, onPressItem}) {
       {handleDismiss => {
         return (
           <View>
-            {trackItem && <Track item={trackItem} />}
+            {trackItem && (
+              <Track item={trackItem} titleStyle={styles.trackTitle} />
+            )}
 
             <View style={styles.hr} />
 
@@ -79,6 +81,9 @@ function TrackBottomSheet({visible, trackItem, onDismiss, onPressItem}) {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 24,
+  },
+  trackTitle: {
+    color: '#000',
   },
   hr: {
     height: 1,
