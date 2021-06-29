@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
 // Containers
 import TrackList from '../containers/TrackList';
+import TrackBottomSheet from '../containers/TrackBottomSheet';
 
 // Redux
 import {
@@ -18,8 +19,30 @@ function TrackListFilterScreen(props) {
   const trackData = props.route.params.trackData;
   const currentTrack = useSelector(selectCurrentTrack);
 
+  const [visibleBts, setVisibleBts] = useState(false);
+  const [trackCliked, setTrackCliked] = useState(null);
+
+  const onDismissBottomSheet = () => {
+    setVisibleBts(false);
+    setTrackCliked(null);
+  };
+
+  const handlePressMoreItem = item => {
+    setVisibleBts(true);
+    setTrackCliked(item);
+  };
+
   return (
     <>
+      <TrackBottomSheet
+        trackItem={trackCliked}
+        visible={visibleBts}
+        onPressItem={() => {
+          setVisibleBts(false);
+        }}
+        onDismiss={onDismissBottomSheet}
+      />
+
       <TrackList
         trackData={trackData}
         handlePressItem={async item => {
@@ -28,6 +51,7 @@ function TrackListFilterScreen(props) {
           }
           navigation.navigate('player');
         }}
+        handlePressMoreItem={handlePressMoreItem}
       />
     </>
   );
