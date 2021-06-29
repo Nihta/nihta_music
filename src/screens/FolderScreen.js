@@ -29,8 +29,6 @@ function FolderScreen(props) {
 
   const folders = useSelector(selectFolders);
 
-  console.log(JSON.stringify(folders));
-
   useEffect(() => {
     dispatch(getFolders());
   }, [dispatch]);

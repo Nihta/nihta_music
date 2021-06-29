@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {
   DarkTheme,
@@ -19,17 +19,14 @@ import * as themes from '../themes';
 import {navigationRef} from './utils/navigationServices';
 import RootStack from './RootStack';
 
-function RootNavigation() {
-  // const isDarkMode = useColorScheme() === 'dark';
+// Screens
+import SplashScreen from '../screens/SplashScreen';
 
-  // Lấy theme hiện tại
-  const theme = useSelector(selectTheme);
-
-  const barStyle = `${theme === 'light' ? 'dark-content' : 'light-content'}`;
-
+const getReactNavigationTheme = theme => {
   // https://reactnavigation.org/docs/themes/
   const baseTheme = theme === 'light' ? DefaultTheme : DarkTheme;
-  const myTheme = {
+
+  const resTheme = {
     ...baseTheme,
     colors: {
       ...baseTheme.colors,
@@ -37,17 +34,38 @@ function RootNavigation() {
     dark: true,
   };
 
+  return resTheme;
+};
+
+const getStatusBarStyle = theme => {
+  return `${theme === 'light' ? 'dark-content' : 'light-content'}`;
+};
+
+function RootNavigation() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  // Lấy theme hiện tại
+  const theme = useSelector(selectTheme);
+  const barStyle = getStatusBarStyle(theme);
+  const naviTheme = getReactNavigationTheme(theme);
+
   return (
     <>
       <SafeAreaProvider>
-        <NavigationContainer ref={navigationRef} theme={myTheme}>
+        <NavigationContainer ref={navigationRef} theme={naviTheme}>
           <ThemeProvider theme={themes[theme]}>
             <StatusBar
               barStyle={barStyle}
               translucent={true}
               backgroundColor={'transparent'}
             />
-            <RootStack />
+            {isLoading ? <SplashScreen /> : <RootStack />}
           </ThemeProvider>
         </NavigationContainer>
       </SafeAreaProvider>
