@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
 
 // Redux
 import {getAlbums, selectAlbums} from '../reducers/mediaReducer';
@@ -19,6 +20,7 @@ const icons = {
 
 function AlbumsScreen() {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const albums = useSelector(selectAlbums);
 
   useEffect(() => {
@@ -32,6 +34,13 @@ function AlbumsScreen() {
       </View>
     );
   }
+
+  const handlePressListItem = item => {
+    navigation.navigate('track-list-filter', {
+      name: item.album,
+      trackData: item.tracks,
+    });
+  };
 
   return (
     <>
@@ -53,6 +62,7 @@ function AlbumsScreen() {
                   }}
                 />
               }
+              onPress={() => handlePressListItem(item)}
             />
           )}
         />
