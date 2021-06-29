@@ -5,17 +5,14 @@ import {useTheme} from 'styled-components/native';
 import AppText from '../components/AppText';
 import Icon from './Icon';
 
-function NodataNew({text}) {
+function NodataNew({text, iconProps}) {
   const theme = useTheme();
 
   return (
     <View style={styles.container}>
-      <Icon
-        name="search-outline"
-        type="ionicon"
-        color={theme.textColor}
-        style={styles.icon}
-      />
+      {iconProps && (
+        <Icon color={theme.textColor} style={styles.icon} {...iconProps} />
+      )}
       <AppText
         text={text ? text : 'Không có dữ liệu'}
         size="f16"

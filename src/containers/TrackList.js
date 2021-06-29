@@ -10,14 +10,17 @@ import Track from '../components/Track';
  * @returns
  */
 function TrackList({
+  contentContainerStyle,
   trackData,
   handlePressItem,
   handlePressMoreItem,
+  ListEmptyComponent,
   otherProps,
 }) {
   return (
     <>
       <FlatList
+        contentContainerStyle={contentContainerStyle}
         keyExtractor={asset => asset.id.toString()}
         data={trackData}
         renderItem={({item}) => (
@@ -27,6 +30,8 @@ function TrackList({
             onPressMore={() => handlePressMoreItem(item)}
           />
         )}
+        initialNumToRender={10}
+        ListEmptyComponent={ListEmptyComponent}
         {...otherProps}
       />
     </>
