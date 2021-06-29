@@ -102,7 +102,7 @@ function PlayerFooter() {
                 <ProgressBar
                   style={styles.progress}
                   progress={isNaN(progress) ? 0 : +progress.toFixed(3)}
-                  color={theme.primary}
+                  color={'#27AE60'}
                 />
               </View>
             </View>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   progress: {
     height: 2,
     width: WINDOW_WIDTH,
-    backgroundColor: '#ccc',
+    backgroundColor: '#bdbdbd',
   },
   title: {
     fontSize: 14,
