@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
@@ -19,6 +19,7 @@ import TouchableIcon from '../components/TouchableIcon';
 
 // Containers
 import PlaybackControl from '../containers/PlaybackControl';
+import TrackBottomSheet from '../containers/TrackBottomSheet';
 
 // Themes
 import {WINDOW_WIDTH} from '../themes/mixins';
@@ -44,8 +45,22 @@ function PlayerScreen() {
   const currentTrack = useSelector(selectCurrentTrack);
   const navigation = useNavigation();
 
+  const [visibleBts, setVisibleBts] = useState(false);
+
+  const onDismissBottomSheet = () => {
+    setVisibleBts(false);
+  };
+
   return (
     <>
+      <TrackBottomSheet
+        trackItem={currentTrack}
+        visible={visibleBts}
+        onDismiss={onDismissBottomSheet}
+        onPressItem={() => {
+          setVisibleBts(false);
+        }}
+      />
       <ImageBackground
         style={styles.container}
         source={{uri: currentTrack?.artwork}}
@@ -75,7 +90,7 @@ function PlayerScreen() {
 
               <TouchableIcon
                 size={30}
-                onPress={() => null}
+                onPress={() => setVisibleBts(true)}
                 iconProps={icons.more}
                 iconStyle={styles.icon}
               />
