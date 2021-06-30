@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
@@ -7,6 +7,8 @@ import {useNavigation} from '@react-navigation/core';
 import ListItem from '../components/ListItem';
 import TouchableIcon from '../components/TouchableIcon';
 import NoData from '../components/NoData';
+
+import FolderBottomSheet from '../containers/bottom-sheet/FolderBottomSheet';
 
 import {getFolders, selectFolders} from '../reducers/mediaReducer';
 
@@ -27,6 +29,9 @@ function FolderScreen(props) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const [visibleBts, setVisibleBts] = useState(false);
+  const [folderCliked, setFolderCliked] = useState(null);
+
   const folders = useSelector(selectFolders);
 
   useEffect(() => {
@@ -44,8 +49,26 @@ function FolderScreen(props) {
     });
   };
 
+  const onDismissBottomSheet = () => {
+    setVisibleBts(false);
+    setFolderCliked(null);
+  };
+
+  const handlePressMoreItem = item => {
+    setVisibleBts(true);
+    setFolderCliked(item);
+  };
+
   return (
     <>
+      <FolderBottomSheet
+        folderItem={folderCliked}
+        visible={visibleBts}
+        onPressItem={() => {
+          setVisibleBts(false);
+        }}
+        onDismiss={onDismissBottomSheet}
+      />
       <FlatList
         keyExtractor={item => item.folder}
         data={folders}
@@ -55,7 +78,12 @@ function FolderScreen(props) {
             subtitle={`${item.tracks.length} bài hát`}
             iconProps={icons.folder}
             style={styles.listItem}
-            rightElement={<TouchableIcon iconProps={icons.more} />}
+            rightElement={
+              <TouchableIcon
+                iconProps={icons.more}
+                onPress={() => handlePressMoreItem(item)}
+              />
+            }
             onPress={() => handlePressListItem(item)}
           />
         )}
