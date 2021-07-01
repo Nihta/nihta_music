@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import BottomSheet, {BottomSheetListItem} from '../components/BottomSheet';
 import Track from '../components/Track';
@@ -14,6 +15,16 @@ import {
 import {BASE} from '../themes/sizes';
 
 function TrackBottomSheet({visible, trackItem, onDismiss, onPressItem}) {
+  const navigation = useNavigation();
+
+  const handlePressViewAlbum = () => {
+    // TODO: Xử lý lấy dữ liệu track
+    navigation.navigate('track-list-filter', {
+      name: trackItem.album,
+      // trackData: item.tracks,
+    });
+  };
+
   return (
     <BottomSheet visible={visible} onDismiss={onDismiss}>
       {handleDismiss => {
@@ -40,7 +51,7 @@ function TrackBottomSheet({visible, trackItem, onDismiss, onPressItem}) {
               iconStyle={styles.icon}
               onPress={() => {
                 handleDismiss();
-                onPressItem();
+                handlePressViewAlbum();
               }}
             />
             <BottomSheetListItem

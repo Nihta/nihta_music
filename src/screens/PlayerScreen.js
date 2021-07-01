@@ -51,6 +51,7 @@ function PlayerScreen() {
   return (
     <>
       <TrackBottomSheet
+        pressVi={true}
         trackItem={currentTrack}
         visible={visibleBts}
         onDismiss={onDismissBottomSheet}
