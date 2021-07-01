@@ -5,6 +5,7 @@ import {useTheme} from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 
 // Components
+import Container from '../components/Container';
 import ListItem from '../components/ListItem';
 
 // Redux
@@ -46,42 +47,44 @@ function SettingsScreen() {
   const themeMode = useSelector(selectTheme);
 
   return (
-    <ScrollView style={styles.scroll}>
-      <ListItem
-        iconProps={icons.darkMode}
-        title={'Chế độ tối'}
-        subtitle={'Chuyển giao diện tối'}
-        rightElement={
-          <Switch
-            value={themeMode === 'dark'}
-            thumbColor={
-              themeMode === 'light' ? theme.elevatedBG : theme.foreground
-            }
-            trackColor={{
-              true: '#555',
-              false: '#ccc',
-            }}
-            disabled
-          />
-        }
-        onPress={() =>
-          dispatch(setTheme(themeMode === 'light' ? 'dark' : 'light'))
-        }
-      />
+    <Container>
+      <ScrollView style={styles.scroll}>
+        <ListItem
+          iconProps={icons.darkMode}
+          title={'Chế độ tối'}
+          subtitle={'Chuyển giao diện tối'}
+          rightElement={
+            <Switch
+              value={themeMode === 'dark'}
+              thumbColor={
+                themeMode === 'light' ? theme.elevatedBG : theme.foreground
+              }
+              trackColor={{
+                true: '#555',
+                false: '#ccc',
+              }}
+              disabled
+            />
+          }
+          onPress={() =>
+            dispatch(setTheme(themeMode === 'light' ? 'dark' : 'light'))
+          }
+        />
 
-      <ListItem
-        iconProps={icons.mail}
-        title={'Góp ý, báo lỗi'}
-        subtitle={'Gửi email cho chúng tôi'}
-        onPress={() => onPressReport()}
-      />
+        <ListItem
+          iconProps={icons.mail}
+          title={'Góp ý, báo lỗi'}
+          subtitle={'Gửi email cho chúng tôi'}
+          onPress={() => onPressReport()}
+        />
 
-      <ListItem
-        iconProps={icons.info}
-        title={'Giới thiệu'}
-        onPress={() => navigation.navigate('about')}
-      />
-    </ScrollView>
+        <ListItem
+          iconProps={icons.info}
+          title={'Giới thiệu'}
+          onPress={() => navigation.navigate('about')}
+        />
+      </ScrollView>
+    </Container>
   );
 }
 

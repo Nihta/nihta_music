@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 // Components
+import Container from '../components/Container';
 import ListItem from '../components/ListItem';
 
 const icons = {
@@ -29,34 +30,32 @@ const icons = {
 
 function LibraryScreen(props) {
   return (
-    <>
-      <View>
-        <ListItem
-          title="Danh sách phát"
-          iconProps={icons.playlists}
-          titleStyle={styles.title}
-          onPress={() => props.navigation.navigate('playlist')}
-        />
-        <ListItem
-          title="Nghệ sĩ"
-          iconProps={icons.artists}
-          titleStyle={styles.title}
-          onPress={() => props.navigation.navigate('artist')}
-        />
-        <ListItem
-          title="Albums"
-          iconProps={icons.albums}
-          titleStyle={styles.title}
-          onPress={() => props.navigation.navigate('album')}
-        />
-        <ListItem
-          title="Thư mục"
-          iconProps={icons.folders}
-          titleStyle={styles.title}
-          onPress={() => props.navigation.navigate('folder')}
-        />
-      </View>
-    </>
+    <Container>
+      <ListItem
+        title="Danh sách phát"
+        iconProps={icons.playlists}
+        titleStyle={styles.title}
+        onPress={() => props.navigation.navigate('playlist')}
+      />
+      <ListItem
+        title="Nghệ sĩ"
+        iconProps={icons.artists}
+        titleStyle={styles.title}
+        onPress={() => props.navigation.navigate('artist')}
+      />
+      <ListItem
+        title="Albums"
+        iconProps={icons.albums}
+        titleStyle={styles.title}
+        onPress={() => props.navigation.navigate('album')}
+      />
+      <ListItem
+        title="Thư mục"
+        iconProps={icons.folders}
+        titleStyle={styles.title}
+        onPress={() => props.navigation.navigate('folder')}
+      />
+    </Container>
   );
 }
 

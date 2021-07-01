@@ -1,14 +1,15 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useTheme} from 'styled-components/native';
 
+import Container from '../components/Container';
 import AppText from '../components/AppText';
 
 function AboutScreen() {
   const theme = useTheme();
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <AppText
         style={[styles.title, {color: theme.textColor}]}
         text="Nihta Music"
@@ -31,7 +32,7 @@ function AboutScreen() {
         text="Nihta"
         size="f16"
       />
-    </View>
+    </Container>
   );
 }
 

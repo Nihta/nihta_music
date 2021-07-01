@@ -3,12 +3,11 @@ import {FlatList, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
-// Redux
-import {getAlbums, selectAlbums} from '../reducers/mediaReducer';
-
-// Components
+import Container from '../components/Container';
 import ListItem from '../components/ListItem';
 import PressableIcon from '../components/PressableIcon';
+
+import {getAlbums, selectAlbums} from '../reducers/mediaReducer';
 
 const icons = {
   folder: {
@@ -44,7 +43,7 @@ function AlbumsScreen() {
 
   return (
     <>
-      <View>
+      <Container>
         <FlatList
           keyExtractor={item => item.album}
           data={albums}
@@ -66,7 +65,7 @@ function AlbumsScreen() {
             />
           )}
         />
-      </View>
+      </Container>
     </>
   );
 }

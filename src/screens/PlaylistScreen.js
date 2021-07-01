@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import Container from '../components/Container';
 import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import TouchableIcon from '../components/TouchableIcon';
+
 import PlaylistBottomSheet from '../containers/bottom-sheet/PlaylistBottomSheet';
 
 const icons = {
@@ -69,13 +71,13 @@ function PlaylistScreen(props) {
   };
   return (
     <>
-      <View>
-        <PlaylistBottomSheet
-          playlistItem={playlistCliked}
-          setVisible={setVisibleBts}
-          visible={visibleBts}
-        />
+      <PlaylistBottomSheet
+        playlistItem={playlistCliked}
+        setVisible={setVisibleBts}
+        visible={visibleBts}
+      />
 
+      <Container>
         <TouchableOpacity style={styles.btn} activeOpacity={0.5}>
           <AppText style={styles.text} text="Thêm danh sách" size="f18" />
         </TouchableOpacity>
@@ -99,7 +101,7 @@ function PlaylistScreen(props) {
             />
           )}
         />
-      </View>
+      </Container>
     </>
   );
 }

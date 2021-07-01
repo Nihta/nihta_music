@@ -3,10 +3,10 @@ import {FlatList, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
-// Components
 import ListItem from '../components/ListItem';
 import TouchableIcon from '../components/TouchableIcon';
 import NoData from '../components/NoData';
+import Container from '../components/Container';
 
 import FolderBottomSheet from '../containers/bottom-sheet/FolderBottomSheet';
 
@@ -69,25 +69,27 @@ function FolderScreen(props) {
         }}
         onDismiss={onDismissBottomSheet}
       />
-      <FlatList
-        keyExtractor={item => item.folder}
-        data={folders}
-        renderItem={({item}) => (
-          <ListItem
-            title={item.folder}
-            subtitle={`${item.tracks.length} bài hát`}
-            iconProps={icons.folder}
-            style={styles.listItem}
-            rightElement={
-              <TouchableIcon
-                iconProps={icons.more}
-                onPress={() => handlePressMoreItem(item)}
-              />
-            }
-            onPress={() => handlePressListItem(item)}
-          />
-        )}
-      />
+      <Container>
+        <FlatList
+          keyExtractor={item => item.folder}
+          data={folders}
+          renderItem={({item}) => (
+            <ListItem
+              title={item.folder}
+              subtitle={`${item.tracks.length} bài hát`}
+              iconProps={icons.folder}
+              style={styles.listItem}
+              rightElement={
+                <TouchableIcon
+                  iconProps={icons.more}
+                  onPress={() => handlePressMoreItem(item)}
+                />
+              }
+              onPress={() => handlePressListItem(item)}
+            />
+          )}
+        />
+      </Container>
     </>
   );
 }

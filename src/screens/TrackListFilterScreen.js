@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
 // Containers
+import Container from '../components/Container';
 import TrackList from '../containers/TrackList';
 import TrackBottomSheet from '../containers/TrackBottomSheet';
 
@@ -43,16 +44,18 @@ function TrackListFilterScreen(props) {
         onDismiss={onDismissBottomSheet}
       />
 
-      <TrackList
-        trackData={trackData}
-        handlePressItem={async item => {
-          if (!currentTrack || item.id !== currentTrack.id) {
-            await dispatch(setCurrentTrack(item));
-          }
-          navigation.navigate('player');
-        }}
-        handlePressMoreItem={handlePressMoreItem}
-      />
+      <Container>
+        <TrackList
+          trackData={trackData}
+          handlePressItem={async item => {
+            if (!currentTrack || item.id !== currentTrack.id) {
+              await dispatch(setCurrentTrack(item));
+            }
+            navigation.navigate('player');
+          }}
+          handlePressMoreItem={handlePressMoreItem}
+        />
+      </Container>
     </>
   );
 }

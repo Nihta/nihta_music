@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 // Redux
 import {
@@ -14,6 +13,7 @@ import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
 // Components
 import Toast from '../components/Toast';
 import NoData from '../components/NoData';
+import Container from '../components/Container';
 
 // Services
 import setupPlayer from '../services/setupPlayer';
@@ -83,7 +83,7 @@ function TracksScreen() {
           setVisibleBts(false);
         }}
       />
-      <SafeAreaView>
+      <Container safeArea>
         <TrackList
           trackData={trackData}
           handlePressItem={async item => {
@@ -97,7 +97,7 @@ function TracksScreen() {
             setTrackCliked(item);
           }}
         />
-      </SafeAreaView>
+      </Container>
     </>
   );
 }

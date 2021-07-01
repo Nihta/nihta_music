@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/core';
 import {getArtists, selectArtists} from '../reducers/mediaReducer';
 
 // Components
+import Container from '../components/Container';
 import ListItem from '../components/ListItem';
 import TouchableIcon from '../components/TouchableIcon';
 import NoData from '../components/NoData';
@@ -47,7 +48,7 @@ function ArtistsScreen(props) {
 
   return (
     <>
-      <View>
+      <Container>
         <FlatList
           keyExtractor={item => item.artist}
           data={artists}
@@ -62,7 +63,7 @@ function ArtistsScreen(props) {
             />
           )}
         />
-      </View>
+      </Container>
     </>
   );
 }
