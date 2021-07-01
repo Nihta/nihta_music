@@ -32,3 +32,8 @@ export const listIcon = {
   name: 'list-outline',
   type: 'ionicon',
 };
+
+export const editIcon = {
+  name: 'create-outline',
+  type: 'ionicon',
+};
