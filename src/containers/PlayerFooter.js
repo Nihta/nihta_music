@@ -27,6 +27,7 @@ import TouchableIcon from '../components/TouchableIcon';
 // Themes
 import {SCALE_12} from '../themes/spacing';
 import {WINDOW_WIDTH} from '../themes/mixins';
+import {PLAYER_FOOTER_HEIGHT} from '../themes/sizes';
 
 const icons = {
   playIcon: {
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     flexDirection: 'row',
-    height: 60,
+    height: PLAYER_FOOTER_HEIGHT,
     left: 0,
     right: 0,
     bottom: 49,
