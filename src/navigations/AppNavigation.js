@@ -1,27 +1,18 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-// Components
 import Icon from '../components/Icon';
 
-// Navigation
 import LibraryNavigator from './LibraryNavigator';
 import SettingNavigator from './SettingNavigator';
 
-// Screens
 import TracksScreen from '../screens/TrackScreen';
 import SearchScreen from '../screens/SearchScreen';
 import PlayerFooter from '../containers/PlayerFooter';
 
-const BottomTabs = createBottomTabNavigator();
+import {tabBarOptions} from './options/tabBarOptions';
 
-const tabBarOptions = {
-  showLabel: false,
-  style: {
-    borderTopWidth: 0,
-  },
-  allowFontScaling: false,
-};
+const BottomTabs = createBottomTabNavigator();
 
 const iconProvider = route => {
   return ({focused, color}) => {

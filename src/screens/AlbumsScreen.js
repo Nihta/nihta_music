@@ -7,7 +7,7 @@ import Container from '../components/Container';
 import ListItem from '../components/ListItem';
 import PressableIcon from '../components/PressableIcon';
 
-import {getAlbums, selectAlbums} from '../reducers/mediaReducer';
+import {getAlbums, selectAlbums} from '../reducers/media/mediaReducer';
 
 const icons = {
   folder: {

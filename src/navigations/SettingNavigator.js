@@ -1,15 +1,16 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// Screens
-import SettingsScreen from '../screens/SettingScreen';
 import AboutScreen from '../screens/AboutScreen';
+import SettingsScreen from '../screens/SettingScreen';
+
+import {stackScreenOptions} from './options/stackScreenOptions';
 
 const Stack = createStackNavigator();
 
 function SettingNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={stackScreenOptions}>
       <Stack.Screen
         name="setting"
         component={SettingsScreen}

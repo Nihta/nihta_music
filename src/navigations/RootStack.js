@@ -8,7 +8,7 @@ import AppNavigation from './AppNavigation';
 import PlayerScreen from '../screens/PlayerScreen';
 
 // Screen options
-import modalScreenOptions from './modalScreenOptions';
+import modalScreenOptions from './options/modalScreenOptions';
 
 const noHeader = {headerShown: false};
 

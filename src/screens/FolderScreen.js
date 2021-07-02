@@ -10,7 +10,7 @@ import Container from '../components/Container';
 
 import FolderBottomSheet from '../containers/bottom-sheet/FolderBottomSheet';
 
-import {getFolders, selectFolders} from '../reducers/mediaReducer';
+import {getFolders, selectFolders} from '../reducers/media/mediaReducer';
 
 const icons = {
   folder: {

@@ -6,7 +6,7 @@ import handleMediaData, {
   handleDataAlbums,
   handleDataArtists,
   handleDataFolders,
-} from './utils/handleMediaData';
+} from './handleMediaData';
 
 // * Đặt tên action kiểu domain/action
 const SET_MEDIA_FILES = 'media/SET_MEDIA_FILES';

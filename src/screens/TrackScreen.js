@@ -8,7 +8,7 @@ import {
   selectCurrentTrack,
   setCurrentTrack,
 } from '../reducers/musicPlayerReducer';
-import {getMedia, selectMediaFiles} from '../reducers/mediaReducer';
+import {getMedia, selectMediaFiles} from '../reducers/media/mediaReducer';
 
 // Components
 import Toast from '../components/Toast';

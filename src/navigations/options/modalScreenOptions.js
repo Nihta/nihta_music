@@ -4,7 +4,7 @@ import {TransitionPresets} from '@react-navigation/stack';
 const {add, multiply} = Animated;
 
 /**
- * Đựa trên forModalPresentationIOS (@react-navigation/stack)
+ * Dựa trên forModalPresentationIOS (@react-navigation/stack)
  */
 const forModalPresentationIOS = ({
   current,

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 
 // Redux
-import {getArtists, selectArtists} from '../reducers/mediaReducer';
+import {getArtists, selectArtists} from '../reducers/media/mediaReducer';
 
 // Components
 import Container from '../components/Container';

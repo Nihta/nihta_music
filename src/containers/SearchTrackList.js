@@ -9,7 +9,7 @@ import TrackList from '../containers/TrackList';
 
 import TrackBottomSheet from './bottom-sheet/TrackBottomSheet';
 
-import {selectMediaFiles} from '../reducers/mediaReducer';
+import {selectMediaFiles} from '../reducers/media/mediaReducer';
 import {
   selectCurrentTrack,
   setCurrentTrack,

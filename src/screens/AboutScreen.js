@@ -5,7 +5,6 @@ import {useTheme} from 'styled-components/native';
 import AppText from '../components/AppText';
 import Content from '../components/Content';
 import Container from '../components/Container';
-import SearchInput from '../components/SearchInput';
 
 import {BASE} from '../themes/sizes';
 
@@ -35,7 +34,6 @@ function AboutScreen() {
           <Section title="Nihta Music" subtitle="Version 0.0.1" />
           <Section title="Developed by" subtitle="Nihta" />
         </View>
-        <SearchInput />
       </Content>
     </Container>
   );

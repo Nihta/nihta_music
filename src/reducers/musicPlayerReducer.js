@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import TrackPlayer from 'react-native-track-player';
 
-import {selectMediaFiles} from './mediaReducer';
+import {selectMediaFiles} from './media/mediaReducer';
 
 import {randomIntegerInRange} from '../utils';
 

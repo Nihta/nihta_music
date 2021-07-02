@@ -1,8 +1,5 @@
 import React from 'react';
-import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-
-// Components
-// import Icon from '../components/Icon';
+import {createStackNavigator} from '@react-navigation/stack';
 
 // Screens
 import AlbumScreen from '../screens/AlbumsScreen';
@@ -12,28 +9,13 @@ import LibraryScreen from '../screens/LibraryScreen';
 import PlaylistScreen from '../screens/PlaylistScreen';
 import TrackListFilterScreen from '../screens/TrackListFilterScreen';
 
-/**
- * @type {import('@react-navigation/stack').StackNavigationOptions}
- */
-const screenOptions = {
-  ...TransitionPresets.ScaleFromCenterAndroid,
-  headerStyle: {
-    elevation: 0,
-  },
-  headerTitleStyle: {
-    // fontSize: 20,
-  },
-  headerTitleAlign: 'center',
-  // headerBackImage: () => (
-  //   <Icon type="ionicon" name="chevron-back-outline" size={26} />
-  // ),
-};
+import {stackScreenOptions} from './options/stackScreenOptions';
 
 const Stack = createStackNavigator();
 
 function LibraryNavigator() {
   return (
-    <Stack.Navigator headerMode="screen" screenOptions={screenOptions}>
+    <Stack.Navigator headerMode="screen" screenOptions={stackScreenOptions}>
       <Stack.Screen
         name="library"
         component={LibraryScreen}

@@ -11,7 +11,7 @@ import {useTheme} from 'styled-components/native';
 import {useTrackPlayerProgress} from 'react-native-track-player/lib/hooks';
 
 // Navigations
-import {navigate} from '../navigations/utils/navigationServices';
+import {navigate} from '../navigations/navigationServices';
 
 // Redux
 import {

@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 // Reducer
-import mediaReducer from './mediaReducer';
+import mediaReducer from './media/mediaReducer';
 import settingReducer from './settingReducer';
 import musicPlayerReducer from './musicPlayerReducer';
 
