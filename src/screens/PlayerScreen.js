@@ -16,7 +16,7 @@ import ProgressSlider from '../components/ProgressSlider';
 
 // Containers
 import PlaybackControl from '../containers/PlaybackControl';
-import TrackBottomSheet from '../containers/TrackBottomSheet';
+import TrackBottomSheet from '../containers/bottom-sheet/TrackBottomSheet';
 
 // Themes
 import {WINDOW_WIDTH} from '../themes/mixins';

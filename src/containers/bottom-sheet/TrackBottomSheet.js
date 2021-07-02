@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import BottomSheet, {BottomSheetListItem} from '../components/BottomSheet';
-import Track from '../components/Track';
+import BottomSheet, {BottomSheetListItem} from '../../components/BottomSheet';
+import Track from '../../components/Track';
 
 import {
   trashIcon,
@@ -11,8 +11,8 @@ import {
   artistIcon,
   hideIcon,
   listIcon,
-} from '../config/defineIcon';
-import {BASE} from '../themes/sizes';
+} from '../../config/defineIcon';
+import {BASE} from '../../themes/sizes';
 
 function TrackBottomSheet({visible, trackItem, onDismiss, onPressItem}) {
   const navigation = useNavigation();

@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/core';
 // Containers
 import Container from '../components/Container';
 import TrackList from '../containers/TrackList';
-import TrackBottomSheet from '../containers/TrackBottomSheet';
+import TrackBottomSheet from '../containers/bottom-sheet/TrackBottomSheet';
 
 // Redux
 import {

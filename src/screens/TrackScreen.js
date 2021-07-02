@@ -24,7 +24,8 @@ import {checkStoragePermission, getStoragePermission} from '../utils';
 // Themes
 import TrackList from '../containers/TrackList';
 
-import TrackBottomSheet from '../containers/TrackBottomSheet';
+// Container
+import TrackBottomSheet from '../containers/bottom-sheet/TrackBottomSheet';
 
 function TracksScreen() {
   const dispatch = useDispatch();

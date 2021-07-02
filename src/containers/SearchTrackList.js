@@ -7,7 +7,7 @@ import NodataNew from '../components/NodataNew';
 import SearchInput from '../components/SearchInput';
 import TrackList from '../containers/TrackList';
 
-import TrackBottomSheet from './TrackBottomSheet';
+import TrackBottomSheet from './bottom-sheet/TrackBottomSheet';
 
 import {selectMediaFiles} from '../reducers/mediaReducer';
 import {
