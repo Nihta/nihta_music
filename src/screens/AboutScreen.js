@@ -1,37 +1,42 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 
-import Container from '../components/Container';
 import AppText from '../components/AppText';
+import Content from '../components/Content';
+import Container from '../components/Container';
+import SearchInput from '../components/SearchInput';
+
+import {BASE} from '../themes/sizes';
+
+function Section({title, subtitle}) {
+  const theme = useTheme();
+  return (
+    <>
+      <AppText
+        style={[styles.title, {color: theme.textColor}]}
+        text={title}
+        size="f18"
+      />
+      <AppText
+        style={[styles.content, {color: theme.textSecondaryColor}]}
+        text={subtitle}
+        size="f16"
+      />
+    </>
+  );
+}
 
 function AboutScreen() {
-  const theme = useTheme();
-
   return (
-    <Container style={styles.container}>
-      <AppText
-        style={[styles.title, {color: theme.textColor}]}
-        text="Nihta Music"
-        size="f18"
-      />
-      <AppText
-        style={[styles.content, {color: theme.textSecondaryColor}]}
-        text="Version 0.0.1"
-        size="f16"
-      />
-
-      <AppText
-        style={[styles.title, {color: theme.textColor}]}
-        text="Developed by"
-        size="f18"
-      />
-
-      <AppText
-        style={[styles.content, {color: theme.textSecondaryColor}]}
-        text="Nihta"
-        size="f16"
-      />
+    <Container>
+      <Content scrollEnabled={false} keyboardAwareScroll={false}>
+        <View style={styles.center}>
+          <Section title="Nihta Music" subtitle="Version 0.0.1" />
+          <Section title="Developed by" subtitle="Nihta" />
+        </View>
+        <SearchInput />
+      </Content>
     </Container>
   );
 }
@@ -39,16 +44,15 @@ function AboutScreen() {
 export default AboutScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  center: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontSize: 18,
-    marginBottom: 8,
+    marginBottom: BASE,
   },
   content: {
-    marginBottom: 40,
+    marginBottom: BASE * 4,
   },
 });
