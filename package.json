@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "react": "18.1.0",
-    "react-native": "0.70.6"
+    "react-native": "0.70.6",
+    "react-native-fs": "^2.20.0",
+    "react-native-permissions": "^3.6.1",
+    "react-native-track-player": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -19,6 +22,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^26.0.23",
+    "@types/jsmediatags": "^3.9.3",
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
     "@types/react-test-renderer": "^18.0.0",
