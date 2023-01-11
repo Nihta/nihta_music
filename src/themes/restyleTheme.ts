@@ -16,15 +16,14 @@ const palette = {
 
 const theme = createTheme({
   colors: {
-    background: '#191A19',
+    background: '#fff',
     white: palette.white,
     black: palette.black,
     primary: palette.greenPrimary,
     onPrimary: palette.white,
     primaryLight: palette.greenLight,
     primaryDark: palette.greenDark,
-    text: palette.white,
-    textDisabled: 'rgba(255,255,255,0.4)',
+    text: palette.black,
     error: palette.red,
     networkImageBackground: '#777',
     border: '#999',

@@ -75,7 +75,7 @@ export type IconProps =
 export const Icon = (props: IconProps) => {
   const {
     name,
-    color = 'white',
+    color = 'black',
     size = 24,
     onPress,
     style,
