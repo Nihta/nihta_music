@@ -1,17 +1,15 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {DarkTheme} from '@react-navigation/native';
 import {navigationRef} from './utils';
 import {RootStack} from './RootStack';
+import {CombinedDefaultTheme} from '~themes/paperTheme';
 
 export const Navigation = () => {
   return (
     <NavigationContainer
       ref={navigationRef}
-      theme={{
-        ...DarkTheme,
-      }}
+      theme={CombinedDefaultTheme}
       onReady={() => {
         console.log('[Navigation] onReady');
       }}>

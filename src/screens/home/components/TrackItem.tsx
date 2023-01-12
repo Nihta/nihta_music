@@ -1,6 +1,6 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Box, Text} from '~components';
+import {StyleSheet} from 'react-native';
+import {List} from 'react-native-paper';
 import {Music} from '~utils';
 
 type TrackItemProps = {
@@ -13,16 +13,25 @@ export const TrackItem = (props: TrackItemProps) => {
 
   // todo: art work
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Box flexDirection={'row'} mx={'lg'} mb={'md'}>
-        <Box bg={'primaryLight'} width={48} height={48} borderRadius={4} />
-        <Box ml={'sm'} justifyContent={'center'} flex={1}>
-          <Text fontSize={15} fontWeight={'500'} numberOfLines={1}>
-            {item.title}
-          </Text>
-          <Text numberOfLines={1}>{item.author}</Text>
-        </Box>
-      </Box>
-    </TouchableOpacity>
+    <List.Item
+      onPress={onPress}
+      title={item.title}
+      description={item.author}
+      left={({style}) => {
+        return (
+          <List.Image
+            variant="image"
+            style={[style, styles.image]}
+            source={require('../../../assets/music.png')}
+          />
+        );
+      }}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    borderRadius: 4,
+  },
+});

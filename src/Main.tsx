@@ -1,8 +1,10 @@
 import React from 'react';
 import {ThemeProvider} from '@shopify/restyle';
-import theme from '~themes/restyleTheme';
 import {Navigation} from '~navigation';
 import {StatusBar} from 'react-native';
+import {Provider as PaperProvider} from 'react-native-paper';
+import {CombinedDefaultTheme} from '~themes/paperTheme';
+import theme from '~themes/restyleTheme';
 
 const Main = () => {
   React.useEffect(() => {}, []);
@@ -15,7 +17,9 @@ const Main = () => {
         translucent={true}
       />
       <ThemeProvider theme={theme}>
-        <Navigation />
+        <PaperProvider theme={CombinedDefaultTheme}>
+          <Navigation />
+        </PaperProvider>
       </ThemeProvider>
     </>
   );
