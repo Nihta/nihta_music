@@ -5,6 +5,8 @@ import {Navigation} from '~navigation';
 import {StatusBar} from 'react-native';
 
 const Main = () => {
+  React.useEffect(() => {}, []);
+
   return (
     <>
       <StatusBar

@@ -1,40 +1,27 @@
 import React from 'react';
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import {createStackNavigator, StackScreenProps} from '@react-navigation/stack';
 import {HomeScreen} from '~screens/home/HomeScreen';
+import {modalScreenOptions} from './options/modalScreenOptions';
+import {PlayerScreen} from '~screens/player/PlayerScreen';
+import {Music} from '~utils';
 
 export type RootStackParamList = {
   Home: undefined;
-  Movie: {
-    slug: string;
+  Player: {
+    track: Music;
   };
-  Search: undefined;
-  Setting: undefined;
-  Notification: undefined;
-  ListMovie: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
+    <Stack.Navigator screenOptions={modalScreenOptions}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Player" component={PlayerScreen} />
     </Stack.Navigator>
   );
 };
 
-export type HomeScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'Home'
->;
-
-export type MovieScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'Movie'
->;
+export type HomeScreenProps = StackScreenProps<RootStackParamList, 'Home'>;
+export type PlayerScreenProps = StackScreenProps<RootStackParamList, 'Player'>;
