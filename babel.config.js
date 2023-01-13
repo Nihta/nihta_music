@@ -24,6 +24,8 @@ module.exports = {
         ],
       },
     ],
+    // * Reanimated plugin has to be listed last
+    'react-native-reanimated/plugin',
   ],
   env: {
     production: {
