@@ -1,7 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useRef} from 'react';
 import {FlatList} from 'react-native';
+import {ActionSheetRef} from 'react-native-actions-sheet';
 import useTrackStore from '~zustand/useTrackStore';
+import {TrackActions} from './TrackActions';
 import {TrackItem} from './TrackItem';
 
 export const ListTrack = () => {
@@ -9,8 +11,11 @@ export const ListTrack = () => {
 
   const navigation = useNavigation();
 
+  const actionSheetRef = useRef<ActionSheetRef>(null);
+
   return (
     <>
+      <TrackActions actionSheetRef={actionSheetRef} />
       <FlatList
         data={tracks}
         renderItem={({item}) => (
@@ -21,6 +26,7 @@ export const ListTrack = () => {
                 track: item,
               })
             }
+            onMoreAction={() => actionSheetRef.current?.show()}
           />
         )}
       />
