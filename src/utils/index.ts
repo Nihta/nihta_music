@@ -27,6 +27,8 @@ export const getMedia = async () => {
   try {
     const data = await MusicFiles.getAll(options);
 
+    console.log(data[0]);
+
     return data as Music[];
   } catch (reason) {
     throw reason;

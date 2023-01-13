@@ -14,7 +14,7 @@ export const HomeScreen = () => {
   }, [setTracks]);
 
   return (
-    <Container safeArea>
+    <Container>
       <ListTrack />
     </Container>
   );

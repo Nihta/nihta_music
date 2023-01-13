@@ -1,13 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Pressable, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
-import TrackPlayer, {useProgress} from 'react-native-track-player';
+import {ProgressBar} from 'react-native-paper';
+import {useProgress} from 'react-native-track-player';
 import {Box, Text} from '~components';
 import {useAppTheme} from '~themes/restyleTheme';
 import usePlayerStore from '~zustand/usePlayerStore';
-import useTrackStore from '~zustand/useTrackStore';
-import ProgressBar from './ProgressBar';
 
 export const PlayerFooter = () => {
   const track = usePlayerStore(state => state.currentTrack);
@@ -17,6 +15,7 @@ export const PlayerFooter = () => {
 
   const {position, duration} = useProgress();
   const progress = position / duration;
+  const {colors: ngColors} = useTheme();
 
   if (!track) {
     return null;
@@ -32,18 +31,16 @@ export const PlayerFooter = () => {
 
   return (
     <Pressable onPress={openPlayer}>
-      <Box bg={'primaryLight'} style={styles.container}>
+      <Box
+        style={{
+          backgroundColor: ngColors.card,
+        }}>
         <ProgressBar
-          style={[
-            styles.progress,
-            {
-              backgroundColor: colors.border,
-            },
-          ]}
           progress={isNaN(progress) ? 0 : +progress.toFixed(3)}
+          style={[styles.progress]}
           color={colors.primary}
         />
-        <Box flexDirection={'row'} mx={'lg'} my={'xs'}>
+        <Box flexDirection={'row'} mx={'lg'} my={'sm'}>
           <Box bg={'primaryDark'} width={44} height={44} borderRadius={21} />
           <Box ml={'sm'} justifyContent={'center'} flex={1}>
             <Text fontWeight={'500'} numberOfLines={1}>
@@ -60,12 +57,6 @@ export const PlayerFooter = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 49,
-    left: 0,
-    right: 0,
-  },
   progress: {
     height: 2,
   },
