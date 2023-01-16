@@ -2,14 +2,15 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {modalScreenOptions} from './options/modalScreenOptions';
 import {PlayerScreen} from '~screens/player/PlayerScreen';
-import {Music} from '~utils';
 import {Drawer} from './Drawer';
 import {SearchScreen} from '~screens/search/SearchScreen';
+import {RootStackScreenProps} from './types';
+import {Track} from 'react-native-track-player';
 
 export type RootStackParamList = {
   HomeDrawer: undefined;
   Player: {
-    track?: Music;
+    track?: Track;
   };
   Search: undefined;
 };
@@ -32,3 +33,5 @@ export const RootStack = () => {
     </Stack.Navigator>
   );
 };
+
+export type PlayerScreenProps = RootStackScreenProps<'Player'>;

@@ -11,6 +11,7 @@ export default async function () {
   TrackPlayer.addEventListener(Event.RemotePlay, () => {
     TrackPlayer.play();
     // store.dispatch(setIsPlaying(true));
+    console.log(Event.RemotePlay);
   });
 
   /**

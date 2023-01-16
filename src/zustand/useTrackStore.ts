@@ -1,11 +1,11 @@
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Music} from '~utils';
+import {Track} from 'react-native-track-player';
 
 interface State {
-  tracks: Music[];
-  setTracks: (tracks: Music[]) => void;
+  tracks: Track[];
+  setTracks: (tracks: Track[]) => void;
 }
 
 const useTrackStore = create<State>()(

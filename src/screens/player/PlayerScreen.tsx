@@ -44,7 +44,7 @@ export const PlayerScreen = (props: PlayerScreenProps) => {
           lineHeight={20}>
           {currentTrack.title}
         </Text>
-        <Text numberOfLines={1}>{currentTrack.author}</Text>
+        <Text numberOfLines={1}>{currentTrack.artist}</Text>
       </Box>
 
       <Box mx={'md'} mt={'md'}>

@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {List, TouchableRipple} from 'react-native-paper';
+import {Track} from 'react-native-track-player';
 import {Box} from '~components';
-import {Music} from '~utils';
 
 type TrackItemProps = {
-  item: Music;
+  item: Track;
   onPress?: () => void;
   onMoreAction?: () => void;
 };
@@ -18,7 +18,7 @@ export const TrackItem = (props: TrackItemProps) => {
     <List.Item
       onPress={onPress}
       title={item.title}
-      description={item.author}
+      description={item.artist}
       left={({style}) => {
         return (
           <List.Image

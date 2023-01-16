@@ -1,5 +1,6 @@
 // @ts-ignore
 import MusicFiles from '@yajanarao/react-native-get-music-files';
+import {Track} from 'react-native-track-player';
 
 const options = {
   title: true,
@@ -33,4 +34,23 @@ export const getMedia = async () => {
   } catch (reason) {
     throw reason;
   }
+};
+
+export const coverMusicFileToTrack = (music: Music): Track => {
+  return {
+    // id: music.id,
+    url: music.path,
+    title: music.title,
+    artist: music.author,
+    album: music.album,
+    genre: music.genre,
+    duration: parseInt(music.duration, 10) / 1000,
+    // artwork: music.cover,
+  };
+};
+
+export const getAllTracks = async () => {
+  const media = await getMedia();
+  const tracks = media.map(coverMusicFileToTrack);
+  return tracks;
 };

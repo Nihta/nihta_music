@@ -47,7 +47,7 @@ export const PlayerFooter = () => {
               {track.title}
             </Text>
             <Text variant={'small'} numberOfLines={1}>
-              {track.author}
+              {track.artist}
             </Text>
           </Box>
         </Box>

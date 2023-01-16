@@ -5,9 +5,12 @@ import {StatusBar} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {CombinedDefaultTheme} from '~themes/paperTheme';
 import theme from '~themes/restyleTheme';
+import {useWatchForPlayerStore} from '~zustand/usePlayerStore';
 
 const Main = () => {
   React.useEffect(() => {}, []);
+
+  useWatchForPlayerStore();
 
   return (
     <>

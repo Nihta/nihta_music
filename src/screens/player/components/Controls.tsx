@@ -1,21 +1,16 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import TrackPlayer, {State, usePlaybackState} from 'react-native-track-player';
+import {State, usePlaybackState} from 'react-native-track-player';
 import {Box, Icon} from '~components';
+import usePlayerStore, {usePlaying} from '~zustand/usePlayerStore';
 
 export const Controls = () => {
-  const playerState = usePlaybackState();
-  const paused = playerState === State.Paused;
+  const togglePlay = usePlayerStore(state => state.togglePlay);
 
-  console.log('playerState', playerState);
-
-  const togglePlay = () => {
-    if (!paused) {
-      TrackPlayer.pause();
-    } else {
-      TrackPlayer.play();
-    }
-  };
+  const playbackState = usePlayerStore(state => state.playbackState);
+  const isPlaying = !(
+    playbackState === State.Paused || playbackState === State.None
+  );
 
   return (
     <Box
@@ -46,7 +41,7 @@ export const Controls = () => {
             borderRadius={30}>
             <Icon
               type="MaterialIcons"
-              name={!paused ? 'pause' : 'play-arrow'}
+              name={isPlaying ? 'pause' : 'play-arrow'}
               size={32}
             />
           </Box>
